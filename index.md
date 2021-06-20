@@ -17,3 +17,9 @@ An implementation of pix2pix on the browser with Tensorflow.js. Transform MS Pai
 
 <br><br><br><br>
 ## Clock Reader
+<img style="float: right;" width="256" height="256" src="docs/final_clock.png"/>
+An OpenCV project implemented in Android Studio so we never have to waste our time reading analogue clocks again. <br><br>
+
+Visit [here](https://wongkj12.github.io/clock-reader/).
+
+[Github page](https://wongkj12.github.io/clock-reader/github.com/wongkj12/clock-reader)
