@@ -8,7 +8,7 @@ Here are some of my personal projects! [Github](https://github.com/wongkj12)
 
 ## NUMBLOK 
 <img style="float: right;" src="docs/temp.png"/>
-A simple (but hopefully challenging) puzzle game made in Unity using C#.
+A simple (but hopefully challenging) puzzle game made in Unity using C#. 
 
 Visit [here](https://jkgnow.itch.io/numblok?secret=Y3TIcmz8VZtkA4AsdYdnAgCpgE).
 
@@ -24,7 +24,7 @@ An implementation of pix2pix on the browser with Tensorflow.js. Transform MS Pai
 <br><br><br><br>
 ## Clock Reader
 <img style="float: right;" width="256" height="256" src="docs/final_clock.png"/>
-An OpenCV project implemented in Android Studio so we never have to waste our time reading analogue clocks again. <br><br>
+An OpenCV project implemented in Android Studio so we never have to waste our time reading analogue clocks again.
 
 Visit [here](https://wongkj12.github.io/clock-reader/).
 
