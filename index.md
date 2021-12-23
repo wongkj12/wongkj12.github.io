@@ -1,10 +1,16 @@
-Hi, I'm Kai Jie, a 19 year-old from Singapore currently serving National Service.
+Hi, I'm Kai Jie, a 20 year-old student from Singapore.
 
 In my free time, I enjoy programming (mostly useless) things. Occasionally, I also try writing about cool mathematics on my math blog, [Rambling Maths](https://ramblingmaths.wordpress.com/).
 
 Here are some of my personal projects! [Github](https://github.com/wongkj12)
 
 ---
+
+## NUMBLOK 
+<img style="float: right;" src="docs/temp.png"/>
+A simple (but hopefully challenging) puzzle game made in Unity using C#.
+
+Visit [here](https://jkgnow.itch.io/numblok?secret=Y3TIcmz8VZtkA4AsdYdnAgCpgE).
 
 ## drawSR
 <img style="float: right;" src="docs/sr.png"/>
