@@ -29,4 +29,4 @@ An OpenCV project implemented in Android Studio so we never have to waste our ti
 
 Visit [here](https://wongkj12.github.io/clock-reader/).
 
-[Github page](https://wongkj12.github.io/clock-reader/github.com/wongkj12/clock-reader)
+[Github page](https://github.com/wongkj12/clock-reader)
