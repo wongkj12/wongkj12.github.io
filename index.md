@@ -1,10 +1,15 @@
-Hi, I'm Kai Jie, a 20 year-old student from Singapore.
+Hi, I'm Kai Jie, a 21 year-old university student from Singapore.
 
-In my free time, I enjoy programming (mostly useless) things. Occasionally, I also try writing about cool mathematics on my math blog, [Rambling Maths](https://ramblingmaths.wordpress.com/).
+In my free time, sometimes I program useless things.
 
 Here are some of my personal projects! [Github](https://github.com/wongkj12)
 
 ---
+
+## TFT Rolling Odds Calculator
+A calculator that provides the odds of hitting your units in TFT, made with very simple HTML and Chart.js.
+
+Visit [here](https://wongkj12.github.io/TFT-Rolling-Odds-Calculator/).
 
 ## NUMBLOK 
 <img style="float: right;" src="docs/temp.png"/>
