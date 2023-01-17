@@ -1,7 +1,5 @@
 Hi, I'm Kai Jie, a 21 year-old university student from Singapore.
 
-In my free time, sometimes I program useless things.
-
 Here are some of my personal projects! [Github](https://github.com/wongkj12)
 
 ---
