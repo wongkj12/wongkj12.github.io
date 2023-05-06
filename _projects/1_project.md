@@ -1,8 +1,9 @@
 ---
 layout: page
-title: project 1
-description: a project with a background image
-img: assets/img/12.jpg
+title: drawSR
+description: An implementation of pix2pix on the browser with Tensorflow.js. Transform MS Paint drawings into the style of Summoner's Rift! 
+img: assets/img/projects/sr.png
+redirect: https://wongkj12.github.io/drawSR/
 importance: 1
 category: work
 ---

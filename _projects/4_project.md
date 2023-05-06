@@ -1,8 +1,9 @@
 ---
 layout: page
-title: project 4
-description: another without an image
-img:
+title: TFT Rolling Odds
+description: A calculator that provides the odds of hitting your units in TFT (Set 7), using Chart.js. 
+img: assets/img/projects/markov.png
+redirect: https://wongkj12.github.io/TFT-Rolling-Odds-Calculator/
 importance: 3
 category: fun
 ---

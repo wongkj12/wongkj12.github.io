@@ -1,8 +1,9 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image
-img: assets/img/3.jpg
+title: Clock Reader
+description: OpenCV project implemented to help me read analogue clocks.
+img: assets/img/projects/final_clock.png
+redirect: https://wongkj12.github.io/clock-reader/
 importance: 2
 category: work
 ---

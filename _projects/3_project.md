@@ -1,9 +1,9 @@
 ---
 layout: page
-title: project 3
-description: a project that redirects to another website
-img: assets/img/7.jpg
-redirect: https://unsplash.com
+title: NUMBLOK
+description: A simple (but hopefully challenging) puzzle game made in Unity using C#.
+img: assets/img/projects/temp.png
+redirect: https://jkgnow.itch.io/numblok?secret=Y3TIcmz8VZtkA4AsdYdnAgCpgE
 importance: 3
 category: work
 ---
