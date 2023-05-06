@@ -10,9 +10,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>a post with math | wongkj12</title>
+    <title>CLRS 4.5-4.6: Master Theorem | wongkj12</title>
     <meta name="author" content="Wong  Kai Jie">
-    <meta name="description" content="an example of a blog post with some math">
+    <meta name="description" content="Overview on the master theorem">
     <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
 
 
@@ -115,7 +115,7 @@
 <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">a post with math</h1>
+    <h1 class="post-title">CLRS 4.5-4.6: Master Theorem</h1>
     <p class="post-meta">May 6, 2023</p>
     <p class="post-tags">
       <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
@@ -134,23 +134,47 @@
   <article class="post-content">
     
     <div id="markdown-content">
-      <p>This theme supports rendering beautiful math in inline and display modes using <a href="https://www.mathjax.org/" rel="external nofollow noopener" target="_blank">MathJax 3</a> engine. You just need to surround your math expression with <code class="language-plaintext highlighter-rouge">$$</code>, like <code class="language-plaintext highlighter-rouge">$$ E = mc^2 $$</code>. If you leave it inside a paragraph, it will produce an inline expression, just like \(E = mc^2\).</p>
+      <p><strong>The master theorem</strong></p>
 
-<p>To use display mode, again surround your expression with <code class="language-plaintext highlighter-rouge">$$</code> and place it as a separate paragraph. Here is an example:</p>
+<p>Let \(a \geq 1, b &gt; 1\) be constants, and define \(T(n)\) as such:</p>
 
-\[\sum_{k=1}^\infty |\langle x, e_k \rangle|^2 \leq \|x\|^2\]
+\[T(n) = aT(n/b) + f(n),\]
 
-<p>You can also use <code class="language-plaintext highlighter-rouge">\begin{equation}...\end{equation}</code> instead of <code class="language-plaintext highlighter-rouge">$$</code> for display mode math.
-MathJax will automatically number equations:</p>
+<p>then</p>
+<ol>
+  <li>If \(f(n) = O(n^{\log_b a - \epsilon})\) for some \(\epsilon &gt; 0\), then \(T(n) = \Theta(n^{\log_b a})\).</li>
+  <li>If \(f(n) = \Theta(n^{\log_b a})\), then \(T(n) = \Theta(n^{\log_b a} \log n)\).</li>
+  <li>If \(f(n) = \Omega(n^{\log_b a + \epsilon})\) for some \(\epsilon &gt; 0\), and if \(af(n/b) \leq cf(n)\)
+for some \(c &lt; 1\) and all sufficiently large \(n\), then \(T(n) = \Theta(f(n))\).</li>
+</ol>
 
-<p>\begin{equation}
-\label{eq:cauchy-schwarz}
-\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
-\end{equation}</p>
+<hr>
 
-<p>and by adding <code class="language-plaintext highlighter-rouge">\label{...}</code> inside the equation environment, we can now refer to the equation using <code class="language-plaintext highlighter-rouge">\eqref</code>.</p>
+<p>The \(n^\epsilon\) or \(n^{-\epsilon}\) term determines whether \(f\) is <em>polynomially</em> faster/slower than \(n^{\log_b a}\).
+Note that</p>
+<ul>
+  <li>The 3 cases do not cover all possibilities for \(f\).</li>
+  <li>We do not care whether \(n/b\) is an integer, as replacement with \(\lfloor n/b \rfloor\) or \(\lceil n/b \rceil\) does not affect the asymptotic behaviour.</li>
+  <li>In case 3, the regularity condition “\(af(n/b) \leq cf(n)\) for some \(c&lt;1\) and all sufficiently large \(n\)” is actually sufficient, i.e. it implies \(f(n) = \Omega(n^{\log_b a + \epsilon})\). (Can be proven by induction)</li>
+</ul>
 
-<p>Note that MathJax 3 is <a href="https://docs.mathjax.org/en/latest/upgrading/whats-new-3.0.html" rel="external nofollow noopener" target="_blank">a major re-write of MathJax</a> that brought a significant improvement to the loading and rendering speed, which is now <a href="http://www.intmath.com/cg5/katex-mathjax-comparison.php" rel="external nofollow noopener" target="_blank">on par with KaTeX</a>.</p>
+<p><strong>Example</strong></p>
+
+\[T(n) = 2T(n/4) + n \log n\]
+
+<p>We have \(a=2,b=4,f(n)=n\log n\), and \(n^{\log_b a}=n^{\log_4 2}=n^{0.5}\).
+Since \(f(n) = \Omega(n) = \Omega(n^{0.5+\epsilon})\), we can take \(\epsilon=0.5\).
+For sufficiently large \(n\), we have that \(af(n/b)=2(n/4)\log(n/4) \leq (n/2)\log(n) = cf(n)\) 
+for \(c=1/2\). Thus by case 3, \(T(n) = \Theta(n\log n)\).</p>
+
+<p><strong>Some intuition?</strong></p>
+
+<p>When we only look at \(f\) defined on exact powers of \(b\), expanding the recurrence we get</p>
+
+\[T(n) = \Theta(n^{log_b a}) + \sum_{j=0}^{\log_b n - 1} a^j f(n/{b^{j}}).\]
+
+<p>Then \(f\) being polynomially faster/slower than \(n^{log_b a}\) determines whether the sum term on the right dominates 
+the big-\(\Theta\) expression.</p>
 
     </div>
   </article>
