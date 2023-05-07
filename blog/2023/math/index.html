@@ -134,7 +134,7 @@
   <article class="post-content">
     
     <div id="markdown-content">
-      <p><strong>The master theorem</strong></p>
+      <h5 id="the-master-theorem"><strong>The master theorem</strong></h5>
 
 <p>Let \(a \geq 1, b &gt; 1\) be constants, and define \(T(n)\) as such:</p>
 
@@ -173,8 +173,13 @@ for \(c=1/2\). Thus by case 3, \(T(n) = \Theta(n\log n)\).</p>
 
 \[T(n) = \Theta(n^{log_b a}) + \sum_{j=0}^{\log_b n - 1} a^j f(n/{b^{j}}).\]
 
-<p>Then \(f\) being polynomially faster/slower than \(n^{log_b a}\) determines whether the sum term on the right dominates 
-the big-\(\Theta\) expression.</p>
+<p>The term on the left is the sum of the leaves of the recurrence tree, and the sum term on the right represents the sum of the remaining nodes. 
+Then \(f\) being polynomially faster/slower than \(n^{log_b a}\) determines whether the sum term on the right dominates the big-\(\Theta\) expression.</p>
+
+<p><strong>On the regularity condition in case 3</strong>: When you draw the recursion tree, \(af(n/b) \leq cf(n)\) for some \(c&lt;1\) implies
+that the root node is always greater than the sum of its’ children, i.e. work done at every level decreases by a factor of \(c\).
+Summing over all the levels, we get an upper bound of something like \(f(n) + cf(n) + c^2 f(n) + ... = f(n)(\frac{1}{1-c})\)
+(converges since \(c &lt; 1\)). Then \(f(n) = \Omega(n^{\log_b a + \epsilon})\) dominates the big-\(\Theta\) expression.</p>
 
     </div>
   </article>
