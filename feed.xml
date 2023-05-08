@@ -1,5 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-05-07T09:12:38+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">CLRS 4.5-4.6: Master Theorem</title><link href="https://wongkj12.github.io/blog/2023/math/" rel="alternate" type="text/html" title="CLRS 4.5-4.6: Master Theorem" /><published>2023-05-06T16:03:00+00:00</published><updated>2023-05-06T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/math</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/math/"><![CDATA[<h5 id="the-master-theorem"><strong>The master theorem</strong></h5>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-05-08T20:29:03+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">CLRS Appendix C: Some probability and bounds (In progress)</title><link href="https://wongkj12.github.io/blog/2023/probability/" rel="alternate" type="text/html" title="CLRS Appendix C: Some probability and bounds (In progress)" /><published>2023-05-08T16:03:50+00:00</published><updated>2023-05-08T16:03:50+00:00</updated><id>https://wongkj12.github.io/blog/2023/probability</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/probability/"><![CDATA[<p>(In progress)</p>
+
+<p>An interesting problem (simulating an unbiased coin given a biased one):</p>
+<blockquote>
+  <p><strong>Exercise 5.1-3 (rephrased)</strong></p>
+
+  <p>Suppose you want to output 0 with probability 1/2 and 1 with probability 1/2.
+You have a biased function \(R\) which outputs 1 with probability \(p\), and 0 with probability
+\(1-p\), where \(0 &lt; p &lt; 1\). Give an algorithm which uses \(R\) to output
+an unbiased answer. What is the expected running time?</p>
+</blockquote>
+
+<p>Call \(R\) twice and store the results in variables \(x\) and \(y\). Note that since \(x\) and \(y\)
+are independent and have the same distribution, by symmetry, \(P(x &lt; y) = P(x &gt; y)\), so we just output 1 whenever
+\(x &gt; y\), 0 if \(x &lt; y\), and repeat otherwise. The probability of termination in one iteration is constant, equal to
+\(P(x \neq y) = 2p(1-p)\), so the number of iterations until termination follows a geometric distribution. Thus in expectation,
+the number of iterations will be \(\frac{1}{2p(1-p)}\).</p>
+
+<hr />
+
+<p>While I learn probability, here I’ll list some interesting bounds/formulas from Appendix C:</p>
+
+<p><strong>Stirling’s approximation (3.18)</strong></p>
+
+\[n! = \sqrt{2\pi n}\left(\frac{n}{e}\right)^n (1+\Theta(1/n)).\]
+
+<p><strong>Binomial bounds</strong></p>
+
+\[{n\choose k} = \left(\frac{n}{k}\right)\left(\frac{n-1}{k-1}\right)\cdots\left(\frac{n-k+1}{1}\right) \geq \left(\frac{n}{k}\right)^k.\]
+
+\[{n\choose k} \leq \frac{n^k}{k!} \leq \left(\frac{en}{k}\right)^k.\]
+
+\[{n\choose k} \leq \frac{n^n}{k^k (n-k)^{n-k}}.\]
+
+<p><strong>Boole’s inequality/Union bound</strong></p>
+
+\[\mathbb{P}\left(\bigcup_i A_i\right) \leq \sum_i \mathbb{P}(A_i).\]
+
+<p><strong>Jensen’s inequality (Probabilistic form)</strong></p>
+
+<p>If \(X\) is a random variable and \(f\) is a <em>convex</em> function (i.e. for all \(x,y\) and all \(0 \leq \lambda \leq 1\), we have
+\(f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y)\)), then</p>
+
+\[\mathbb{E}(f(X)) \geq f(\mathbb{E}(X)),\]
+
+<p>provided that the expectations exist and are finite.</p>
+
+<p><strong>Markov’s inequality (Exercise C.3-6)</strong></p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[Some probability and useful bounds]]></summary></entry><entry><title type="html">CLRS 4.5-4.6: Master Theorem</title><link href="https://wongkj12.github.io/blog/2023/mt/" rel="alternate" type="text/html" title="CLRS 4.5-4.6: Master Theorem" /><published>2023-05-06T16:03:00+00:00</published><updated>2023-05-06T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/mt</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/mt/"><![CDATA[<h5 id="the-master-theorem"><strong>The master theorem</strong></h5>
 
 <p>Let \(a \geq 1, b &gt; 1\) be constants, and define \(T(n)\) as such:</p>
 
@@ -44,4 +91,4 @@ Then \(f\) being polynomially faster/slower than \(n^{log_b a}\) determines whet
 <p><strong>On the regularity condition in case 3</strong>: When you draw the recursion tree, \(af(n/b) \leq cf(n)\) for some \(c&lt;1\) implies
 that the root node is always greater than the sum of its’ children, i.e. work done at every level decreases by a factor of \(c\).
 Summing over all the levels, we get an upper bound of something like \(f(n) + cf(n) + c^2 f(n) + ... = f(n)(\frac{1}{1-c})\)
-(converges since \(c &lt; 1\)). Then \(f(n) = \Omega(n^{\log_b a + \epsilon})\) dominates the big-\(\Theta\) expression.</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><summary type="html"><![CDATA[Overview on the master theorem]]></summary></entry><entry><title type="html">MA2202 Cheatsheet</title><link href="https://wongkj12.github.io/blog/2023/test/" rel="alternate" type="text/html" title="MA2202 Cheatsheet" /><published>2023-05-06T16:02:50+00:00</published><updated>2023-05-06T16:02:50+00:00</updated><id>https://wongkj12.github.io/blog/2023/test</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/test/"><![CDATA[]]></content><author><name></name></author><category term="notes" /><category term="math" /><summary type="html"><![CDATA[Cheatsheet for MA2202 (Algebra I) 22/23 Sem 2]]></summary></entry></feed>
+(converges since \(c &lt; 1\)). Then \(f(n) = \Omega(n^{\log_b a + \epsilon})\) dominates the big-\(\Theta\) expression.</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><summary type="html"><![CDATA[Overview on the master theorem]]></summary></entry><entry><title type="html">MA2202 Cheatsheet</title><link href="https://wongkj12.github.io/blog/2023/ma2202/" rel="alternate" type="text/html" title="MA2202 Cheatsheet" /><published>2023-05-06T16:02:50+00:00</published><updated>2023-05-06T16:02:50+00:00</updated><id>https://wongkj12.github.io/blog/2023/ma2202</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/ma2202/"><![CDATA[]]></content><author><name></name></author><category term="notes" /><category term="math" /><summary type="html"><![CDATA[Cheatsheet for MA2202 (Algebra I) 22/23 Sem 2]]></summary></entry></feed>

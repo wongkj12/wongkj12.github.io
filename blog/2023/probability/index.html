@@ -10,9 +10,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CLRS 4.5-4.6: Master Theorem | wongkj12</title>
+    <title>CLRS Appendix C: Some probability and bounds (In progress) | wongkj12</title>
     <meta name="author" content="Wong  Kai Jie">
-    <meta name="description" content="Overview on the master theorem">
+    <meta name="description" content="Some probability and useful bounds">
     <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
 
 
@@ -38,7 +38,7 @@
     <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://wongkj12.github.io/blog/2023/math/">
+    <link rel="canonical" href="https://wongkj12.github.io/blog/2023/probability/">
 
     <!-- Dark Mode -->
     
@@ -115,13 +115,15 @@
 <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">CLRS 4.5-4.6: Master Theorem</h1>
-    <p class="post-meta">May 6, 2023</p>
+    <h1 class="post-title">CLRS Appendix C: Some probability and bounds (In progress)</h1>
+    <p class="post-meta">May 8, 2023</p>
     <p class="post-tags">
       <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
         ·  
         <a href="/blog/tag/clrs">
           <i class="fas fa-hashtag fa-sm"></i> clrs</a>  
+          <a href="/blog/tag/math">
+          <i class="fas fa-hashtag fa-sm"></i> math</a>  
           
         ·  
         <a href="/blog/category/notes">
@@ -134,52 +136,55 @@
   <article class="post-content">
     
     <div id="markdown-content">
-      <h5 id="the-master-theorem"><strong>The master theorem</strong></h5>
+      <p>(In progress)</p>
 
-<p>Let \(a \geq 1, b &gt; 1\) be constants, and define \(T(n)\) as such:</p>
+<p>An interesting problem (simulating an unbiased coin given a biased one):</p>
+<blockquote>
+  <p><strong>Exercise 5.1-3 (rephrased)</strong></p>
 
-\[T(n) = aT(n/b) + f(n),\]
+  <p>Suppose you want to output 0 with probability 1/2 and 1 with probability 1/2.
+You have a biased function \(R\) which outputs 1 with probability \(p\), and 0 with probability
+\(1-p\), where \(0 &lt; p &lt; 1\). Give an algorithm which uses \(R\) to output
+an unbiased answer. What is the expected running time?</p>
+</blockquote>
 
-<p>then</p>
-<ol>
-  <li>If \(f(n) = O(n^{\log_b a - \epsilon})\) for some \(\epsilon &gt; 0\), then \(T(n) = \Theta(n^{\log_b a})\).</li>
-  <li>If \(f(n) = \Theta(n^{\log_b a})\), then \(T(n) = \Theta(n^{\log_b a} \log n)\).</li>
-  <li>If \(f(n) = \Omega(n^{\log_b a + \epsilon})\) for some \(\epsilon &gt; 0\), and if \(af(n/b) \leq cf(n)\)
-for some \(c &lt; 1\) and all sufficiently large \(n\), then \(T(n) = \Theta(f(n))\).</li>
-</ol>
+<p>Call \(R\) twice and store the results in variables \(x\) and \(y\). Note that since \(x\) and \(y\)
+are independent and have the same distribution, by symmetry, \(P(x &lt; y) = P(x &gt; y)\), so we just output 1 whenever
+\(x &gt; y\), 0 if \(x &lt; y\), and repeat otherwise. The probability of termination in one iteration is constant, equal to
+\(P(x \neq y) = 2p(1-p)\), so the number of iterations until termination follows a geometric distribution. Thus in expectation,
+the number of iterations will be \(\frac{1}{2p(1-p)}\).</p>
 
 <hr>
 
-<p>The \(n^\epsilon\) or \(n^{-\epsilon}\) term determines whether \(f\) is <em>polynomially</em> faster/slower than \(n^{\log_b a}\).
-Note that</p>
-<ul>
-  <li>The 3 cases do not cover all possibilities for \(f\).</li>
-  <li>We do not care whether \(n/b\) is an integer, as replacement with \(\lfloor n/b \rfloor\) or \(\lceil n/b \rceil\) does not affect the asymptotic behaviour.</li>
-  <li>In case 3, the regularity condition “\(af(n/b) \leq cf(n)\) for some \(c&lt;1\) and all sufficiently large \(n\)” is actually sufficient, i.e. it implies \(f(n) = \Omega(n^{\log_b a + \epsilon})\). (Can be proven by induction)</li>
-</ul>
+<p>While I learn probability, here I’ll list some interesting bounds/formulas from Appendix C:</p>
 
-<p><strong>Example</strong></p>
+<p><strong>Stirling’s approximation (3.18)</strong></p>
 
-\[T(n) = 2T(n/4) + n \log n\]
+\[n! = \sqrt{2\pi n}\left(\frac{n}{e}\right)^n (1+\Theta(1/n)).\]
 
-<p>We have \(a=2,b=4,f(n)=n\log n\), and \(n^{\log_b a}=n^{\log_4 2}=n^{0.5}\).
-Since \(f(n) = \Omega(n) = \Omega(n^{0.5+\epsilon})\), we can take \(\epsilon=0.5\).
-For sufficiently large \(n\), we have that \(af(n/b)=2(n/4)\log(n/4) \leq (n/2)\log(n) = cf(n)\) 
-for \(c=1/2\). Thus by case 3, \(T(n) = \Theta(n\log n)\).</p>
+<p><strong>Binomial bounds</strong></p>
 
-<p><strong>Some intuition?</strong></p>
+\[{n\choose k} = \left(\frac{n}{k}\right)\left(\frac{n-1}{k-1}\right)\cdots\left(\frac{n-k+1}{1}\right) \geq \left(\frac{n}{k}\right)^k.\]
 
-<p>When we only look at \(f\) defined on exact powers of \(b\), expanding the recurrence we get</p>
+\[{n\choose k} \leq \frac{n^k}{k!} \leq \left(\frac{en}{k}\right)^k.\]
 
-\[T(n) = \Theta(n^{log_b a}) + \sum_{j=0}^{\log_b n - 1} a^j f(n/{b^{j}}).\]
+\[{n\choose k} \leq \frac{n^n}{k^k (n-k)^{n-k}}.\]
 
-<p>The term on the left is the sum of the leaves of the recurrence tree, and the sum term on the right represents the sum of the remaining nodes. 
-Then \(f\) being polynomially faster/slower than \(n^{log_b a}\) determines whether the sum term on the right dominates the big-\(\Theta\) expression.</p>
+<p><strong>Boole’s inequality/Union bound</strong></p>
 
-<p><strong>On the regularity condition in case 3</strong>: When you draw the recursion tree, \(af(n/b) \leq cf(n)\) for some \(c&lt;1\) implies
-that the root node is always greater than the sum of its’ children, i.e. work done at every level decreases by a factor of \(c\).
-Summing over all the levels, we get an upper bound of something like \(f(n) + cf(n) + c^2 f(n) + ... = f(n)(\frac{1}{1-c})\)
-(converges since \(c &lt; 1\)). Then \(f(n) = \Omega(n^{\log_b a + \epsilon})\) dominates the big-\(\Theta\) expression.</p>
+\[\mathbb{P}\left(\bigcup_i A_i\right) \leq \sum_i \mathbb{P}(A_i).\]
+
+<p><strong>Jensen’s inequality (Probabilistic form)</strong></p>
+
+<p>If \(X\) is a random variable and \(f\) is a <em>convex</em> function (i.e. for all \(x,y\) and all \(0 \leq \lambda \leq 1\), we have
+\(f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y)\)), then</p>
+
+\[\mathbb{E}(f(X)) \geq f(\mathbb{E}(X)),\]
+
+<p>provided that the expectations exist and are finite.</p>
+
+<p><strong>Markov’s inequality (Exercise C.3-6)</strong></p>
+
 
     </div>
   </article>
