@@ -10,10 +10,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>2023 | wongkj12</title>
+    <title>CLRS Appendix B: Equivalent conditions for trees | wongkj12</title>
     <meta name="author" content="Wong  Kai Jie">
-    <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-">
+    <meta name="description" content="On trees">
     <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
 
 
@@ -39,7 +38,7 @@
     <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://wongkj12.github.io/blog/2023/">
+    <link rel="canonical" href="https://wongkj12.github.io/blog/2023/trees/">
 
     <!-- Dark Mode -->
     
@@ -111,49 +110,75 @@
     <!-- Content -->
     <div class="container mt-5">
       
-        <div class="post">
+        <!-- _layouts/post.html -->
+
+<div class="post">
 
   <header class="post-header">
-    <h1 class="post-title"> <i class="fas fa-calendar fa-sm"></i> 2023 </h1>
-    <p class="post-description"> an archive of posts from this year </p>
+    <h1 class="post-title">CLRS Appendix B: Equivalent conditions for trees</h1>
+    <p class="post-meta">June 26, 2023</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+        ·  
+        <a href="/blog/tag/clrs">
+          <i class="fas fa-hashtag fa-sm"></i> clrs</a>  
+          <a href="/blog/tag/math">
+          <i class="fas fa-hashtag fa-sm"></i> math</a>  
+          
+        ·  
+        <a href="/blog/category/notes">
+          <i class="fas fa-tag fa-sm"></i> notes</a>  
+          
+
+    </p>
   </header>
 
-  <article>
-    <div class="table-responsive">
-      <table class="table table-sm table-borderless">
-        
-        <tr>
-          <th scope="row">Jun 26, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/trees/">CLRS Appendix B: Equivalent conditions for trees</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">May 8, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/probability/">CLRS Appendix C: Some probability and bounds</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">May 6, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/mt/">CLRS 4.5-4.6: Master Theorem</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">May 6, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/ma2202/">MA2202 Cheatsheet</a>
-          </td>
-        </tr>
-      
-      </table>
+  <article class="post-content">
+    
+    <div id="markdown-content">
+      <p>A <em>tree</em> is a connected, acyclic (undirected) graph. Let \(G = (V,E)\) be an undirected graph. Here are some equivalent conditions for \(G\) to be a tree:</p>
+
+<ol>
+  <li>\(G\) is a tree.</li>
+  <li>Any two vertices in \(G\) are connected by a unique simple path.</li>
+  <li>\(G\) is connected, but if any edge is removed from \(E\), the resulting graph is disconnected.</li>
+  <li>\(G\) is connected, and \(\lvert E\rvert= \lvert V\rvert-1\).</li>
+  <li>\(G\) is acyclic, and \(\lvert E\rvert = \lvert V\rvert-1\).</li>
+  <li>\(G\) is acyclic, but if any edge is added to \(E\), the resulting graph contains a cycle.</li>
+</ol>
+
+<hr>
+
+<p>I will roughly prove their equivalence here.</p>
+
+<p>\((1) \Rightarrow (2)\):
+Since \(G\) is connected, any two vertices \(u, v\) are connected by at least one simple path. If there exists more than one such path between \(u\) and \(v\), then \(G\) contains a cycle (Contradiction).</p>
+
+<p>\((2) \Rightarrow (3)\):
+Suppose we remove edge \((u,v)\). If there still exists a path between \(u\) and \(v\), then there would have more than one simple path connecting \(u\) and \(v\) initially (Contadiction). Thus \(u\) and \(v\) must not be connected after the removal of \((u,v)\) so the resulting graph is disconnected.</p>
+
+<p>\((3) \Rightarrow (4)\):
+Prove by strong induction (see (A) below).</p>
+
+<p>\((4) \Rightarrow (5)\):
+Suppose \(G\) contains cycles. Remove edges from cycles in \(G\) until we get an acyclic graph \(G'=(E',V')\). Note that \(G'\) is still connected, so \(\lvert E'\rvert \geq \lvert V'\rvert - 1\). However, \(\lvert E\rvert = \lvert V\rvert -1\), so this implies we have removed 0 edges! Thus \(G\) must have been acyclic$$.</p>
+
+<p>\((5) \Rightarrow (6)\):
+See (B) below.</p>
+
+<p>\((6) \Rightarrow (1)\):
+Suppose there is no path connecting \(u\) and \(v\) in \(G\). Then add the edge \((u,v)\) to \(G\). This new edge cannot have formed a cycle (Contradiction). Thus \(G\) must have been connected initially.</p>
+
+<hr>
+
+<p>Additionally, here are two more useful facts: (can be proven via strong induction)</p>
+
+<p>A. \(G\) is connected \(\Rightarrow \lvert E\rvert \geq \lvert V\rvert-1\).</p>
+
+<p>B. \(G\) is acyclic \(\Rightarrow  \lvert E\rvert \leq \lvert V\rvert-1\).</p>
+
     </div>
   </article>
-
 </div>
 
       

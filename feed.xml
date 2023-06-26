@@ -1,5 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-06-18T19:58:22+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">CLRS Appendix C: Some probability and bounds</title><link href="https://wongkj12.github.io/blog/2023/probability/" rel="alternate" type="text/html" title="CLRS Appendix C: Some probability and bounds" /><published>2023-05-08T16:03:50+00:00</published><updated>2023-05-08T16:03:50+00:00</updated><id>https://wongkj12.github.io/blog/2023/probability</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/probability/"><![CDATA[<p>An interesting problem (simulating an unbiased coin given a biased one):</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-06-26T18:01:58+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">CLRS Appendix B: Equivalent conditions for trees</title><link href="https://wongkj12.github.io/blog/2023/trees/" rel="alternate" type="text/html" title="CLRS Appendix B: Equivalent conditions for trees" /><published>2023-06-26T16:01:20+00:00</published><updated>2023-06-26T16:01:20+00:00</updated><id>https://wongkj12.github.io/blog/2023/trees</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/trees/"><![CDATA[<p>A <em>tree</em> is a connected, acyclic (undirected) graph. Let \(G = (V,E)\) be an undirected graph. Here are some equivalent conditions for \(G\) to be a tree:</p>
+
+<ol>
+  <li>\(G\) is a tree.</li>
+  <li>Any two vertices in \(G\) are connected by a unique simple path.</li>
+  <li>\(G\) is connected, but if any edge is removed from \(E\), the resulting graph is disconnected.</li>
+  <li>\(G\) is connected, and \(\lvert E\rvert= \lvert V\rvert-1\).</li>
+  <li>\(G\) is acyclic, and \(\lvert E\rvert = \lvert V\rvert-1\).</li>
+  <li>\(G\) is acyclic, but if any edge is added to \(E\), the resulting graph contains a cycle.</li>
+</ol>
+
+<hr />
+
+<p>I will roughly prove their equivalence here.</p>
+
+<p>\((1) \Rightarrow (2)\):
+Since \(G\) is connected, any two vertices \(u, v\) are connected by at least one simple path. If there exists more than one such path between \(u\) and \(v\), then \(G\) contains a cycle (Contradiction).</p>
+
+<p>\((2) \Rightarrow (3)\):
+Suppose we remove edge \((u,v)\). If there still exists a path between \(u\) and \(v\), then there would have more than one simple path connecting \(u\) and \(v\) initially (Contadiction). Thus \(u\) and \(v\) must not be connected after the removal of \((u,v)\) so the resulting graph is disconnected.</p>
+
+<p>\((3) \Rightarrow (4)\):
+Prove by strong induction (see (A) below).</p>
+
+<p>\((4) \Rightarrow (5)\):
+Suppose \(G\) contains cycles. Remove edges from cycles in \(G\) until we get an acyclic graph \(G'=(E',V')\). Note that \(G'\) is still connected, so \(\lvert E'\rvert \geq \lvert V'\rvert - 1\). However, \(\lvert E\rvert = \lvert V\rvert -1\), so this implies we have removed 0 edges! Thus \(G\) must have been acyclic$$.</p>
+
+<p>\((5) \Rightarrow (6)\):
+See (B) below.</p>
+
+<p>\((6) \Rightarrow (1)\):
+Suppose there is no path connecting \(u\) and \(v\) in \(G\). Then add the edge \((u,v)\) to \(G\). This new edge cannot have formed a cycle (Contradiction). Thus \(G\) must have been connected initially.</p>
+
+<hr />
+
+<p>Additionally, here are two more useful facts: (can be proven via strong induction)</p>
+
+<p>A. \(G\) is connected \(\Rightarrow \lvert E\rvert \geq \lvert V\rvert-1\).</p>
+
+<p>B. \(G\) is acyclic \(\Rightarrow  \lvert E\rvert \leq \lvert V\rvert-1\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On trees]]></summary></entry><entry><title type="html">CLRS Appendix C: Some probability and bounds</title><link href="https://wongkj12.github.io/blog/2023/probability/" rel="alternate" type="text/html" title="CLRS Appendix C: Some probability and bounds" /><published>2023-05-08T16:03:50+00:00</published><updated>2023-05-08T16:03:50+00:00</updated><id>https://wongkj12.github.io/blog/2023/probability</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/probability/"><![CDATA[<p>An interesting problem (simulating an unbiased coin given a biased one):</p>
 
 <blockquote>
   <p><strong>Exercise 5.1-3 (rephrased)</strong></p>
