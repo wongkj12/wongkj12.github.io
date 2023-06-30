@@ -1,5 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-06-26T18:01:58+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">CLRS Appendix B: Equivalent conditions for trees</title><link href="https://wongkj12.github.io/blog/2023/trees/" rel="alternate" type="text/html" title="CLRS Appendix B: Equivalent conditions for trees" /><published>2023-06-26T16:01:20+00:00</published><updated>2023-06-26T16:01:20+00:00</updated><id>https://wongkj12.github.io/blog/2023/trees</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/trees/"><![CDATA[<p>A <em>tree</em> is a connected, acyclic (undirected) graph. Let \(G = (V,E)\) be an undirected graph. Here are some equivalent conditions for \(G\) to be a tree:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-06-30T13:07:55+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">CLRS Appendix C: Comparing sums of Bernoulli trials</title><link href="https://wongkj12.github.io/blog/2023/comparing-bernoulli/" rel="alternate" type="text/html" title="CLRS Appendix C: Comparing sums of Bernoulli trials" /><published>2023-06-29T16:20:48+00:00</published><updated>2023-06-29T16:20:48+00:00</updated><id>https://wongkj12.github.io/blog/2023/comparing-bernoulli</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/comparing-bernoulli/"><![CDATA[<p>Here is an interesting exercise on probability distributions.</p>
+
+<blockquote>
+  <p><strong>Exercise C.4-9</strong></p>
+
+  <p>Let \(X\) be the random variable for the total number of successes in a set \(A\) of \(n\) Bernoulli trials, where the \(i\)th trial has a probability \(p_i\) of success, and let \(X'\) be the random variable for the total number of successes in a second set \(A'\) of \(n\) Bernoulli trials, where the \(i\)th trial has a probability \(p_i' \geq p_i\) of success. Prove that for \(0\leq k\leq n\),</p>
+
+  <p>\(P(X'\geq k) \geq P(X\geq k)\).</p>
+
+  <p>(<em>Hint:</em> Show how to obtain the Bernoulli trials in \(A'\) by an experiment involving the trials of \(A\), and use the result of Exercise C.3-7.)</p>
+</blockquote>
+
+<hr />
+
+<p>I found this exercise interesting as the result is intuitive, but it’s tricky to find a way to “compare” the distributions, as per the hint.</p>
+
+<p>This is one clever solution I found online, which seems obvious in hindsight:</p>
+
+<p>Consider comparing each Bernoulli trial to picking a random value \(S\) on the unit interval. If \(S \leq p_i\), we can call that a success in set \(A\). If \(S \leq p_i'\), we can call that a success in set \(A'\). If \(S \leq p_i\), then \(S \leq p_i'\). Then clearly, whenever there is a success for set \(A\), there must be a success for set \(A'\). So \(X' \geq X\), and \(P(X' \geq k) \geq P(X \geq k)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On comparing sums of Bernoulli trials]]></summary></entry><entry><title type="html">CLRS Appendix B: Equivalent conditions for trees</title><link href="https://wongkj12.github.io/blog/2023/trees/" rel="alternate" type="text/html" title="CLRS Appendix B: Equivalent conditions for trees" /><published>2023-06-26T16:01:20+00:00</published><updated>2023-06-26T16:01:20+00:00</updated><id>https://wongkj12.github.io/blog/2023/trees</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/trees/"><![CDATA[<p>A <em>tree</em> is a connected, acyclic (undirected) graph. Let \(G = (V,E)\) be an undirected graph. Here are some equivalent conditions for \(G\) to be a tree:</p>
 
 <ol>
   <li>\(G\) is a tree.</li>
