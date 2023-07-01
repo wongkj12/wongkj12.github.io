@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-06-30T13:07:55+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-01T00:07:40+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 </subtitle><entry><title type="html">CLRS Appendix C: Comparing sums of Bernoulli trials</title><link href="https://wongkj12.github.io/blog/2023/comparing-bernoulli/" rel="alternate" type="text/html" title="CLRS Appendix C: Comparing sums of Bernoulli trials" /><published>2023-06-29T16:20:48+00:00</published><updated>2023-06-29T16:20:48+00:00</updated><id>https://wongkj12.github.io/blog/2023/comparing-bernoulli</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/comparing-bernoulli/"><![CDATA[<p>Here is an interesting exercise on probability distributions.</p>
 
 <blockquote>
@@ -17,7 +17,52 @@
 
 <p>This is one clever solution I found online, which seems obvious in hindsight:</p>
 
-<p>Consider comparing each Bernoulli trial to picking a random value \(S\) on the unit interval. If \(S \leq p_i\), we can call that a success in set \(A\). If \(S \leq p_i'\), we can call that a success in set \(A'\). If \(S \leq p_i\), then \(S \leq p_i'\). Then clearly, whenever there is a success for set \(A\), there must be a success for set \(A'\). So \(X' \geq X\), and \(P(X' \geq k) \geq P(X \geq k)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On comparing sums of Bernoulli trials]]></summary></entry><entry><title type="html">CLRS Appendix B: Equivalent conditions for trees</title><link href="https://wongkj12.github.io/blog/2023/trees/" rel="alternate" type="text/html" title="CLRS Appendix B: Equivalent conditions for trees" /><published>2023-06-26T16:01:20+00:00</published><updated>2023-06-26T16:01:20+00:00</updated><id>https://wongkj12.github.io/blog/2023/trees</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/trees/"><![CDATA[<p>A <em>tree</em> is a connected, acyclic (undirected) graph. Let \(G = (V,E)\) be an undirected graph. Here are some equivalent conditions for \(G\) to be a tree:</p>
+<p>Consider comparing each Bernoulli trial to picking a random value \(S\) on the unit interval. If \(S \leq p_i\), we can call that a success in set \(A\). If \(S \leq p_i'\), we can call that a success in set \(A'\). If \(S \leq p_i\), then \(S \leq p_i'\). Then clearly, whenever there is a success for set \(A\), there must be a success for set \(A'\). So \(X' \geq X\), and \(P(X' \geq k) \geq P(X \geq k)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On comparing sums of Bernoulli trials]]></summary></entry><entry><title type="html">CLRS Appendix B: Tree problems</title><link href="https://wongkj12.github.io/blog/2023/treeproblems/" rel="alternate" type="text/html" title="CLRS Appendix B: Tree problems" /><published>2023-06-29T16:20:48+00:00</published><updated>2023-06-29T16:20:48+00:00</updated><id>https://wongkj12.github.io/blog/2023/treeproblems</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/treeproblems/"><![CDATA[<p>Here are three problems on trees from Appendix B.</p>
+
+<blockquote>
+  <p><strong>Exercise B.5-3</strong></p>
+
+  <p>Show that the number of degree-2 nodes in any nonempty binary tree is 1 fewer than the number of leaves. Conclude that the number of internal nodes in a full binary tree is 1 fewer than the number of leaves.</p>
+</blockquote>
+
+<p>Note that in the context of a binary tree, the “degree-2” nodes refer to nodes with exactly 2 <em>children</em>.</p>
+
+<p><strong>Proof by strong induction</strong>: Let the number of degree-2 nodes in any tree by \(D\), and the number of leaves be \(L\). Let the number of nodes in a tree be \(n\). Clearly, \(D=L-1\) when \(n=1\). Suppose it is true for all trees with \(\leq n\) nodes. Consider the root of a tree with \(n+1\) nodes. Letting subscripts \(l\) and \(r\) denote the left and right subtrees, we have that</p>
+
+\[\begin{aligned}
+D &amp;= D_l + D_r + 1 \\
+&amp;= (L_l + L_r - 2) + 1 \\
+&amp;= (L_l + L_r) - 1 \\
+&amp;= L - 1.
+\end{aligned}\]
+
+<p>In a full binary tree, all internal nodes are of degree-2.</p>
+
+<hr />
+
+<blockquote>
+  <p><strong>Exercise B.5-6</strong></p>
+
+  <p>Let us associate a “weight” \(w(x)=2^{-d}\) with each leaf \(x\) of depth \(d\) in a binary tree \(T\), and let \(L\) be the set of leaves on \(T\). Prove that \(\sum_{x\in L} w(x) \leq 1.\) (This is known as the <strong>Kraft inequality</strong>.)</p>
+</blockquote>
+
+<p><strong>Proof by strong induction</strong>: Let the number of nodes in any tree \(T\) be \(n\). Clearly when \(n=1\), \(\sum_{x\in L}w(x) = 2^0 \leq 1.\) Suppose \(\sum_{x\in L}w(x) \leq 1\) for all trees with \(\leq n\) nodes. Consider the root of a tree \(T\) with \(n+1\) nodes. Notice that the depth of all leaves in the left and right subtrees increase by 1 relative to the root. Similarly letting subscripts \(l\) and \(r\) denote the left and right subtrees, we have that</p>
+
+\[\begin{aligned}
+\sum_{x\in L}w(x) &amp;= \frac{1}{2}\sum_{x\in L_l}w(x) + \frac{1}{2}\sum_{x\in L_r}w(x) \\
+&amp;\leq \frac{1}{2}(1) + \frac{1}{2}(1) \\
+&amp;\leq 1.
+\end{aligned}\]
+
+<hr />
+
+<blockquote>
+  <p><strong>Exercise B.5-7</strong></p>
+
+  <p>Show that if \(L\geq 2\), then every binary tree with \(L\) leaves contains a subtree having between \(L/3\) and \(2L/3\) leaves, inclusive.</p>
+</blockquote>
+
+<p><strong>Proof by contradiction</strong>: Suppose that there is a binary tree with \(L\) leaves, with no subtrees having between \(L/3\) and \(2L/3\) leaves. If \(L\geq 2\), then the root of this tree cannot be a leaf. Take the path \(x_0 = root, x_1, \ldots , x_k\) on the tree down to a leaf, at each step picking the child subtree with the larger number of leaves. Consider the number of leaves of the subtree rooted at each \(x_i\). Clearly the number of leaves is a decreasing sequence, so along the path the number of leaves must decrement from \(x_i\) with more than \(2L/3\) leaves to \(x_{i+1}\) with less than \(L/3\) leaves. However, if \(x_i\) has less than \(L/3\) leaves, then \(x_{i+1}\) must have had less than \(2L/3\) leaves, a contradiction.</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[Three tree problems from Appendix B]]></summary></entry><entry><title type="html">CLRS Appendix B: Equivalent conditions for trees</title><link href="https://wongkj12.github.io/blog/2023/trees/" rel="alternate" type="text/html" title="CLRS Appendix B: Equivalent conditions for trees" /><published>2023-06-26T16:01:20+00:00</published><updated>2023-06-26T16:01:20+00:00</updated><id>https://wongkj12.github.io/blog/2023/trees</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/trees/"><![CDATA[<p>A <em>tree</em> is a connected, acyclic (undirected) graph. Let \(G = (V,E)\) be an undirected graph. Here are some equivalent conditions for \(G\) to be a tree:</p>
 
 <ol>
   <li>\(G\) is a tree.</li>
