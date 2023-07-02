@@ -10,9 +10,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CLRS Appendix B: Three problems on trees | wongkj12</title>
+    <title>CLRS Appendix B: A theorem on graph coloring | wongkj12</title>
     <meta name="author" content="Wong  Kai Jie">
-    <meta name="description" content="Three tree problems from Appendix B">
+    <meta name="description" content="An exercise on graph coloring from Appendix B">
     <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
 
 
@@ -38,7 +38,7 @@
     <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://wongkj12.github.io/blog/2023/treeproblems/">
+    <link rel="canonical" href="https://wongkj12.github.io/blog/2023/graphcoloringtheorem/">
 
     <!-- Dark Mode -->
     
@@ -115,8 +115,8 @@
 <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">CLRS Appendix B: Three problems on trees</h1>
-    <p class="post-meta">June 29, 2023</p>
+    <h1 class="post-title">CLRS Appendix B: A theorem on graph coloring</h1>
+    <p class="post-meta">July 2, 2023</p>
     <p class="post-tags">
       <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
         ·  
@@ -136,52 +136,19 @@
   <article class="post-content">
     
     <div id="markdown-content">
-      <p>Here are three problems on trees from Appendix B.</p>
+      <blockquote>
+  <p><strong>Problem B-1 (d)</strong></p>
 
-<blockquote>
-  <p><strong>Exercise B.5-3</strong></p>
-
-  <p>Show that the number of degree-2 nodes in any nonempty binary tree is 1 fewer than the number of leaves. Conclude that the number of internal nodes in a full binary tree is 1 fewer than the number of leaves.</p>
+  <p>Show that if a graph \(G\) has \(O(V)\) edges, then we can color \(G\) with \(O(\sqrt{V})\) colors.</p>
 </blockquote>
-
-<p>Note that in the context of a binary tree, the “degree-2” nodes refer to nodes with exactly 2 <em>children</em>.</p>
-
-<p><strong>Proof by strong induction</strong>: Let the number of degree-2 nodes in any tree by \(D\), and the number of leaves be \(L\). Let the number of nodes in a tree be \(n\). Clearly, \(D=L-1\) when \(n=1\). Suppose it is true for all trees with \(\leq n\) nodes. Consider the root of a tree with \(n+1\) nodes. Letting subscripts \(l\) and \(r\) denote the left and right subtrees, we have that</p>
-
-\[\begin{aligned}
-D &amp;= D_l + D_r + 1 \\
-&amp;= (L_l + L_r - 2) + 1 \\
-&amp;= (L_l + L_r) - 1 \\
-&amp;= L - 1.
-\end{aligned}\]
-
-<p>In a full binary tree, all internal nodes are of degree-2.</p>
 
 <hr>
 
-<blockquote>
-  <p><strong>Exercise B.5-6</strong></p>
+<p>Here is a proof by trying the greedy algorithm:</p>
 
-  <p>Let us associate a “weight” \(w(x)=2^{-d}\) with each leaf \(x\) of depth \(d\) in a binary tree \(T\), and let \(L\) be the set of leaves on \(T\). Prove that \(\sum_{x\in L} w(x) \leq 1.\) (This is known as the <strong>Kraft inequality</strong>.)</p>
-</blockquote>
+<p><strong>Proof</strong>:</p>
 
-<p><strong>Proof by strong induction</strong>: Let the number of nodes in any tree \(T\) be \(n\). Clearly when \(n=1\), \(\sum_{x\in L}w(x) = 2^0 \leq 1.\) Suppose \(\sum_{x\in L}w(x) \leq 1\) for all trees with \(\leq n\) nodes. Consider the root of a tree \(T\) with \(n+1\) nodes. Notice that the depth of all leaves in the left and right subtrees increase by 1 relative to the root. Similarly letting subscripts \(l\) and \(r\) denote the left and right subtrees, we have that</p>
-
-\[\begin{aligned}
-\sum_{x\in L}w(x) &amp;= \frac{1}{2}\sum_{x\in L_l}w(x) + \frac{1}{2}\sum_{x\in L_r}w(x) \\
-&amp;\leq \frac{1}{2}(1) + \frac{1}{2}(1) \\
-&amp;\leq 1.
-\end{aligned}\]
-
-<hr>
-
-<blockquote>
-  <p><strong>Exercise B.5-7</strong></p>
-
-  <p>Show that if \(L\geq 2\), then every binary tree with \(L\) leaves contains a subtree having between \(L/3\) and \(2L/3\) leaves, inclusive.</p>
-</blockquote>
-
-<p><strong>Proof by contradiction</strong>: Suppose that there is a binary tree with \(L\) leaves, with no subtrees having between \(L/3\) and \(2L/3\) leaves. If \(L\geq 2\), then the root of this tree cannot be a leaf. Take the path \(x_0 = root, x_1, \ldots , x_k\) on the tree down to a leaf, at each step picking the child subtree with the larger number of leaves. Consider the number of leaves of the subtree rooted at each \(x_i\). Clearly the number of leaves is a decreasing sequence, so along the path the number of leaves must decrement from \(x_i\) with more than \(2L/3\) leaves to \(x_{i+1}\) with less than \(L/3\) leaves. However, if \(x_i\) has less than \(L/3\) leaves, then \(x_{i+1}\) must have had less than \(2L/3\) leaves, a contradiction.</p>
+<p>Attempt to color the graph greedily (i.e. color an arbitrary vertex, then start coloring its neighbours, using new colors whenever needed, and so on). Whenever we need to use a new color \(n\) on a vertex, that vertex must neccessarily have edges connecting it to vertices colored in each one of the previous \(n-1\) colors. Everytime we use a new color, mark all of these edges. Every edge is marked at most once, and so if we end the algorithm using \(c\) colors, at least \(1+2+\ldots+c = \frac{c(c+1)}{2}\) edges must have been marked. Thus \(\frac{c(c+1)}{2} \leq E\), so \(\frac{c(c+1)}{2} \in O(V)\), and we have that \(c \in O(\sqrt{V})\).</p>
 
     </div>
   </article>
