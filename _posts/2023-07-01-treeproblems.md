@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "CLRS Appendix B: Tree problems"
+title: "CLRS Appendix B: Three problems on trees"
 date: 2023-06-30 00:20:48+0800
 description: Three tree problems from Appendix B
 tags: clrs math
