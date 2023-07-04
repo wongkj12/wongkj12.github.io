@@ -1,5 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-02T17:31:09+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">CLRS Appendix B: A theorem on graph coloring</title><link href="https://wongkj12.github.io/blog/2023/graphcoloringtheorem/" rel="alternate" type="text/html" title="CLRS Appendix B: A theorem on graph coloring" /><published>2023-07-02T16:01:19+00:00</published><updated>2023-07-02T16:01:19+00:00</updated><id>https://wongkj12.github.io/blog/2023/graphcoloringtheorem</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/graphcoloringtheorem/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-04T15:47:57+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">CLRS Appendix B: More graph theory, and Dirac’s theorem</title><link href="https://wongkj12.github.io/blog/2023/moregraphtheory/" rel="alternate" type="text/html" title="CLRS Appendix B: More graph theory, and Dirac’s theorem" /><published>2023-07-03T16:23:43+00:00</published><updated>2023-07-03T16:23:43+00:00</updated><id>https://wongkj12.github.io/blog/2023/moregraphtheory</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/moregraphtheory/"><![CDATA[<blockquote>
+  <p><strong>Problem B-2 (c) (rephrased)</strong></p>
+
+  <p>Given any graph \(G=(V,E)\), the vertex set \(V\) can be partitioned into two subsets \(V_1,V_2\) such that at least half the neighbours of any \(u\in V_1\) are in \(V_2\), and at least half the neighbours of any \(v\in V_2\) are in \(V_1\).</p>
+</blockquote>
+
+<hr />
+
+<p>Note that if all of the neighbours of any \(u\in V_1\) are in \(V_2\) and vice-versa, this is just a 2-coloring of the graph, and \(G\) would be bipartite. It is kind of interesting to draw the partitioning of \(G\) as some kind of bipartite-looking graph. In fact, I think the edges that cross from \(V_1\) to \(V_2\) must at least be twice the number of edges from \(V_1\) to \(V_1\), or \(V_2\) to \(V_2:\)</p>
+
+<p>Let the number of edges that cross \(V_1\) to \(V_2\) be \(E_{12}\), the number of edges only within \(V_1\) be \(E_1\), and similarly define \(E_2\). Note that \(E_1 = \frac{1}{2}((\sum_{u\in V_1}deg(u)) - E_{12})\) (by handshaking lemma). Then</p>
+
+\[\begin{aligned}
+E_{12} &amp;\geq \frac{1}{2} \sum_{u\in V_1} deg(u) \\
+&amp;\geq \frac{1}{2} E_{12} + E_1 \\
+\end{aligned}\]
+
+<p>Thus \(E_{12} \geq 2E_1\), and similarly \(E_{12} \geq 2E_2\). However, I did not find this approach useful in proving the statement.</p>
+
+<p><strong>Proof</strong>:</p>
+
+<p>Arbitrarily try to assign vertices to either \(V_1\) or \(V_2\). If all vertices meet the condition, then we are done. Otherwise, pick a vertex which does not satisfy the condition, and swap the subset it belongs to such that it now satisfies the condition. Note that the number of edges crossing from \(V_1\) to \(V_2\) strictly increases this way. If \(\lvert E\rvert\) is finite, then this process must terminate, resulting in the desired partition.</p>
+
+<blockquote>
+  <p><strong>Problem B-2 (d) (rephrased, i.e. Dirac’s Theorem)</strong></p>
+
+  <p>Given any graph \(G=(V,E)\), with \(n \geq 3\) vertices, if each vertex has degree at least \(n/2\), then \(G\) contains a Hamiltonian cycle (A cycle which visits each vertex exactly once).</p>
+</blockquote>
+
+<hr />
+
+<p>First, we show that a longest simple path in \(G\) is a Hamiltonian path (A path which visits each vertex exactly once). Let such a path be \(P = (v_1,v_2,\ldots,v_k)\). Suppose there is a vertex \(u\) in \(G\) that is outside of \(P\). We proceed by showing that there is a vertex \(v_j\) on \(P\) that is a neighbour of \(v_k\), such that \(v_{j+1}\) is a neighbour of \(u\). Since \(P\) is a longest path, all neigbours of \(v_k\) must be on \(P\). Thus there at at least \(n/2\) neighbours \(v_i\) of \(v_k\) on \(P\), and we mark each of the \(n/2\) neighbours \(v_{i+1}\) on \(P\). Now, since \(u\) has at least \(n/2\) neighbours, by the Pigeonhole Principle, it is a neighbour of at least one of these marked vertices. Thus the vertex \(v_j\) exists, and we can construct a longer path \((v_1,v_2,\ldots,v_j,v_k,v_{k-1},\ldots,v_{j+1},u)\) (contradiction). Thus \(P\) must be a Hamiltonian path.</p>
+
+<p>Next, given \(P = (v_1,\ldots,v_n)\) we can construct a Hamiltonian cycle. Using a similar argument, we can show that there exists a pair \((v_t,v_{t+1})\) on \(P\) such that \(v_t\) is a neighbour of \(v_n\) and \(v_{t+1}\) is a neighbour of \(v_1\). Then we can rearrange vertices to form the cycle \((v_1,v_2,\ldots,v_t,v_n,v_{n-1},\ldots,v_{t+1},v_1)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[Two more graph theory problems]]></summary></entry><entry><title type="html">CLRS Appendix B: A theorem on graph coloring</title><link href="https://wongkj12.github.io/blog/2023/graphcoloringtheorem/" rel="alternate" type="text/html" title="CLRS Appendix B: A theorem on graph coloring" /><published>2023-07-02T16:01:19+00:00</published><updated>2023-07-02T16:01:19+00:00</updated><id>https://wongkj12.github.io/blog/2023/graphcoloringtheorem</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/graphcoloringtheorem/"><![CDATA[<blockquote>
   <p><strong>Problem B-1 (d)</strong></p>
 
   <p>Show that if a graph \(G\) has \(O(V)\) edges, then we can color \(G\) with \(O(\sqrt{V})\) colors.</p>

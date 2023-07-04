@@ -2,24 +2,23 @@
 <html lang="en">
 
   <!-- Head -->
-  <head>    <!-- Metadata, OpenGraph and Schema.org -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
     
 
     <!-- Standard metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>
-        blog | wongkj12</title>
-    <meta name="author" content="Wong  Kai Jie" />
-    <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-" />
-    <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website" />
+    <title>CLRS Appendix B: More graph theory, and Dirac's theorem | wongkj12</title>
+    <meta name="author" content="Wong  Kai Jie">
+    <meta name="description" content="Two more graph theory problems">
+    <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
 
 
     <!-- Bootstrap & MDB -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
 
     <!-- Bootstrap Table -->
     <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.3/dist/bootstrap-table.min.css">
@@ -30,20 +29,20 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
 
     <!-- Code Syntax Highlighting -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
 
     
 
     <!-- Styles -->
     
-    <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
+    <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://wongkj12.github.io/blog/">
+    <link rel="canonical" href="https://wongkj12.github.io/blog/2023/moregraphtheory/">
 
     <!-- Dark Mode -->
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
 
     <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/dark_mode.js"></script>
@@ -111,259 +110,69 @@
     <!-- Content -->
     <div class="container mt-5">
       
-        <div class="post">
+        <!-- _layouts/post.html -->
 
-  
-  
+<div class="post">
 
-  
-  <div class="header-bar">
-    <h1>blog</h1>
-    <h2>Currently this is mostly a documentation of my notes studying CLRS/other things.</h2>
-  </div>
-  
-
-  
-  <div class="tag-list">
-    <ul class="p-0 m-0">
-      
-        <li>
-          <i class="fas fa-hashtag fa-sm"></i> <a href="/blog/tag/math">math</a>
-        </li>
-        
-          <p>&bull;</p>
-        
-      
-        <li>
-          <i class="fas fa-hashtag fa-sm"></i> <a href="/blog/tag/clrs">clrs</a>
-        </li>
-        
-      
-    </ul>
-  </div>
-  
-
-  <ul class="post-list">
-    
-
-    
-    
-    
-    
-
-    <li><h3>
-        
-          <a class="post-title" href="/blog/2023/moregraphtheory/">CLRS Appendix B: More graph theory, and Dirac's theorem</a>
-        
-      </h3>
-      <p>Two more graph theory problems</p>
-      <p class="post-meta">
-        3 min read &nbsp; &middot; &nbsp;
-        July 3, 2023
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2023">
-          <i class="fas fa-calendar fa-sm"></i> 2023 </a>
-
+  <header class="post-header">
+    <h1 class="post-title">CLRS Appendix B: More graph theory, and Dirac's theorem</h1>
+    <p class="post-meta">July 3, 2023</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+        ·  
+        <a href="/blog/tag/clrs">
+          <i class="fas fa-hashtag fa-sm"></i> clrs</a>  
+          <a href="/blog/tag/math">
+          <i class="fas fa-hashtag fa-sm"></i> math</a>  
           
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/clrs">
-              <i class="fas fa-hashtag fa-sm"></i> clrs</a> &nbsp;
-              
-            <a href="/blog/tag/math">
-              <i class="fas fa-hashtag fa-sm"></i> math</a> &nbsp;
-              
+        ·  
+        <a href="/blog/category/notes">
+          <i class="fas fa-tag fa-sm"></i> notes</a>  
           
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/notes">
-              <i class="fas fa-tag fa-sm"></i> notes</a> &nbsp;
-              
-          
-    </p></li>
+    </p>
+  </header>
 
+  <article class="post-content">
     
+    <div id="markdown-content">
+      <blockquote>
+  <p><strong>Problem B-2 (c) (rephrased)</strong></p>
 
-    
-    
-    
-    
+  <p>Given any graph \(G=(V,E)\), the vertex set \(V\) can be partitioned into two subsets \(V_1,V_2\) such that at least half the neighbours of any \(u\in V_1\) are in \(V_2\), and at least half the neighbours of any \(v\in V_2\) are in \(V_1\).</p>
+</blockquote>
 
-    <li><h3>
-        
-          <a class="post-title" href="/blog/2023/graphcoloringtheorem/">CLRS Appendix B: A theorem on graph coloring</a>
-        
-      </h3>
-      <p>An exercise on graph coloring from Appendix B</p>
-      <p class="post-meta">
-        1 min read &nbsp; &middot; &nbsp;
-        July 2, 2023
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2023">
-          <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+<hr>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/clrs">
-              <i class="fas fa-hashtag fa-sm"></i> clrs</a> &nbsp;
-              
-            <a href="/blog/tag/math">
-              <i class="fas fa-hashtag fa-sm"></i> math</a> &nbsp;
-              
-          
+<p>Note that if all of the neighbours of any \(u\in V_1\) are in \(V_2\) and vice-versa, this is just a 2-coloring of the graph, and \(G\) would be bipartite. It is kind of interesting to draw the partitioning of \(G\) as some kind of bipartite-looking graph. In fact, I think the edges that cross from \(V_1\) to \(V_2\) must at least be twice the number of edges from \(V_1\) to \(V_1\), or \(V_2\) to \(V_2:\)</p>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/notes">
-              <i class="fas fa-tag fa-sm"></i> notes</a> &nbsp;
-              
-          
-    </p></li>
+<p>Let the number of edges that cross \(V_1\) to \(V_2\) be \(E_{12}\), the number of edges only within \(V_1\) be \(E_1\), and similarly define \(E_2\). Note that \(E_1 = \frac{1}{2}((\sum_{u\in V_1}deg(u)) - E_{12})\) (by handshaking lemma). Then</p>
 
-    
+\[\begin{aligned}
+E_{12} &amp;\geq \frac{1}{2} \sum_{u\in V_1} deg(u) \\
+&amp;\geq \frac{1}{2} E_{12} + E_1 \\
+\end{aligned}\]
 
-    
-    
-    
-    
+<p>Thus \(E_{12} \geq 2E_1\), and similarly \(E_{12} \geq 2E_2\). However, I did not find this approach useful in proving the statement.</p>
 
-    <li><h3>
-        
-          <a class="post-title" href="/blog/2023/treeproblems/">CLRS Appendix B: Three problems on trees</a>
-        
-      </h3>
-      <p>Three tree problems from Appendix B</p>
-      <p class="post-meta">
-        3 min read &nbsp; &middot; &nbsp;
-        June 29, 2023
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2023">
-          <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+<p><strong>Proof</strong>:</p>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/clrs">
-              <i class="fas fa-hashtag fa-sm"></i> clrs</a> &nbsp;
-              
-            <a href="/blog/tag/math">
-              <i class="fas fa-hashtag fa-sm"></i> math</a> &nbsp;
-              
-          
+<p>Arbitrarily try to assign vertices to either \(V_1\) or \(V_2\). If all vertices meet the condition, then we are done. Otherwise, pick a vertex which does not satisfy the condition, and swap the subset it belongs to such that it now satisfies the condition. Note that the number of edges crossing from \(V_1\) to \(V_2\) strictly increases this way. If \(\lvert E\rvert\) is finite, then this process must terminate, resulting in the desired partition.</p>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/notes">
-              <i class="fas fa-tag fa-sm"></i> notes</a> &nbsp;
-              
-          
-    </p></li>
+<blockquote>
+  <p><strong>Problem B-2 (d) (rephrased, i.e. Dirac’s Theorem)</strong></p>
 
-    
+  <p>Given any graph \(G=(V,E)\), with \(n \geq 3\) vertices, if each vertex has degree at least \(n/2\), then \(G\) contains a Hamiltonian cycle (A cycle which visits each vertex exactly once).</p>
+</blockquote>
 
-    
-    
-    
-    
+<hr>
 
-    <li><h3>
-        
-          <a class="post-title" href="/blog/2023/comparing-bernoulli/">CLRS Appendix C: Comparing sums of Bernoulli trials</a>
-        
-      </h3>
-      <p>On comparing sums of Bernoulli trials</p>
-      <p class="post-meta">
-        2 min read &nbsp; &middot; &nbsp;
-        June 29, 2023
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2023">
-          <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+<p>First, we show that a longest simple path in \(G\) is a Hamiltonian path (A path which visits each vertex exactly once). Let such a path be \(P = (v_1,v_2,\ldots,v_k)\). Suppose there is a vertex \(u\) in \(G\) that is outside of \(P\). We proceed by showing that there is a vertex \(v_j\) on \(P\) that is a neighbour of \(v_k\), such that \(v_{j+1}\) is a neighbour of \(u\). Since \(P\) is a longest path, all neigbours of \(v_k\) must be on \(P\). Thus there at at least \(n/2\) neighbours \(v_i\) of \(v_k\) on \(P\), and we mark each of the \(n/2\) neighbours \(v_{i+1}\) on \(P\). Now, since \(u\) has at least \(n/2\) neighbours, by the Pigeonhole Principle, it is a neighbour of at least one of these marked vertices. Thus the vertex \(v_j\) exists, and we can construct a longer path \((v_1,v_2,\ldots,v_j,v_k,v_{k-1},\ldots,v_{j+1},u)\) (contradiction). Thus \(P\) must be a Hamiltonian path.</p>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/clrs">
-              <i class="fas fa-hashtag fa-sm"></i> clrs</a> &nbsp;
-              
-            <a href="/blog/tag/math">
-              <i class="fas fa-hashtag fa-sm"></i> math</a> &nbsp;
-              
-          
+<p>Next, given \(P = (v_1,\ldots,v_n)\) we can construct a Hamiltonian cycle. Using a similar argument, we can show that there exists a pair \((v_t,v_{t+1})\) on \(P\) such that \(v_t\) is a neighbour of \(v_n\) and \(v_{t+1}\) is a neighbour of \(v_1\). Then we can rearrange vertices to form the cycle \((v_1,v_2,\ldots,v_t,v_n,v_{n-1},\ldots,v_{t+1},v_1)\).</p>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/notes">
-              <i class="fas fa-tag fa-sm"></i> notes</a> &nbsp;
-              
-          
-    </p></li>
-
-    
-
-    
-    
-    
-    
-
-    <li><h3>
-        
-          <a class="post-title" href="/blog/2023/trees/">CLRS Appendix B: Equivalent conditions for trees</a>
-        
-      </h3>
-      <p>On trees</p>
-      <p class="post-meta">
-        2 min read &nbsp; &middot; &nbsp;
-        June 26, 2023
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2023">
-          <i class="fas fa-calendar fa-sm"></i> 2023 </a>
-
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/clrs">
-              <i class="fas fa-hashtag fa-sm"></i> clrs</a> &nbsp;
-              
-            <a href="/blog/tag/math">
-              <i class="fas fa-hashtag fa-sm"></i> math</a> &nbsp;
-              
-          
-
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/notes">
-              <i class="fas fa-tag fa-sm"></i> notes</a> &nbsp;
-              
-          
-    </p></li>
-
-    
-  </ul>
-
-  <nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li><li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
+    </div>
+  </article>
 </div>
 
       
@@ -372,7 +181,7 @@
     <!-- Footer -->    
     <footer class="fixed-bottom">
       <div class="container mt-0">
-        &copy; Copyright 2023 Wong  Kai Jie. Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
+        © Copyright 2023 Wong  Kai Jie. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
 
       </div>
     </footer>
