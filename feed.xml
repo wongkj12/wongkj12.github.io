@@ -1,5 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-04T15:47:57+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">CLRS Appendix B: More graph theory, and Dirac’s theorem</title><link href="https://wongkj12.github.io/blog/2023/moregraphtheory/" rel="alternate" type="text/html" title="CLRS Appendix B: More graph theory, and Dirac’s theorem" /><published>2023-07-03T16:23:43+00:00</published><updated>2023-07-03T16:23:43+00:00</updated><id>https://wongkj12.github.io/blog/2023/moregraphtheory</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/moregraphtheory/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-11T17:55:55+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">CLRS Appendix C: Tails of the binomial distribution (in progress)</title><link href="https://wongkj12.github.io/blog/2023/binomialtails/" rel="alternate" type="text/html" title="CLRS Appendix C: Tails of the binomial distribution (in progress)" /><published>2023-07-11T16:23:43+00:00</published><updated>2023-07-11T16:23:43+00:00</updated><id>https://wongkj12.github.io/blog/2023/binomialtails</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/binomialtails/"><![CDATA[<p>The <strong>tails</strong> of the binomial distribution refers to the two regions of the distribution \(b(k;n,p)\) that are far from the mean \(np\).</p>
+
+<p>First, we may provide bounds on the right tail of \(b(k;n,p)\). Let \(X\) be a random variable denoting the number of successes in \(n\) Bernoulli trials with probability of success \(p\), i.e. \(X \sim Bin(n,p)\). Then for \(0\leq k \leq n\),</p>
+
+\[\begin{aligned}
+P(X\geq k) &amp;= \sum_{i=k}^{n} b(i;n,p) \\
+&amp;\leq {n\choose k} p^k. \\
+\end{aligned}\]
+
+<p><strong>Proof:</strong></p>
+
+<p>Clearly, whenever at least \(k\) trials are successes, we have \(X\geq k\). The probability of exactly \(k\) trials being a successes is \(p^k\), and there are \({n\choose k}\) possible \(k\)-subsets of such trials. However, when we sum this together to \({n\choose k}p^k\), we are “overcounting” the probabilities here, as any \(k\)-subset of trials being successes are not neccessarily disjoint events, which gives us an upper bound. More formally, we are using the union bound here.</p>
+
+<p>Similarly, we can make the same statement about the left tail of \(b(k;n,p)\):</p>
+
+\[\begin{aligned}
+P(X\leq k) &amp;= \sum_{i=0}^k b(i;n,p) \\
+&amp;\leq {n \choose {n-k}} (1-p)^{n-k} \\
+&amp;= {n \choose k}(1-p)^{n-k} \\
+\end{aligned}\]
+
+<p><strong>Proof</strong></p>
+
+<p>By a similar union-bound argument, whenever at least \(n-k\) trials are failures, we have \(X\leq k\).</p>
+
+<hr />]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[The tails of the binomial distribution]]></summary></entry><entry><title type="html">CLRS Appendix B: More graph theory, and Dirac’s theorem</title><link href="https://wongkj12.github.io/blog/2023/moregraphtheory/" rel="alternate" type="text/html" title="CLRS Appendix B: More graph theory, and Dirac’s theorem" /><published>2023-07-03T16:23:43+00:00</published><updated>2023-07-03T16:23:43+00:00</updated><id>https://wongkj12.github.io/blog/2023/moregraphtheory</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/moregraphtheory/"><![CDATA[<blockquote>
   <p><strong>Problem B-2 (c) (rephrased)</strong></p>
 
   <p>Given any graph \(G=(V,E)\), the vertex set \(V\) can be partitioned into two subsets \(V_1,V_2\) such that at least half the neighbours of any \(u\in V_1\) are in \(V_2\), and at least half the neighbours of any \(v\in V_2\) are in \(V_1\).</p>
