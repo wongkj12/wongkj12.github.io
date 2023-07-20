@@ -28,7 +28,7 @@ has exactly one ball. $$P(Y_i) = (1-\frac{1}{n})^{n-1}$$. Then the expectation i
 
 $$E(Y) = \sum_{i} E(Y_i) = n(1-\frac{1}{n})^{n-1}$$
 
-Interestingly, since $$(1+\frac{x}{n})^n \approx e$$, both expectations actually
+Interestingly, since $$(1+\frac{x}{n})^n \approx e^x$$, both expectations actually
 tend to the same value, $$\frac{n}{e}$$ when $$n$$ is large.
 
 $$
