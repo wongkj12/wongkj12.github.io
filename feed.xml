@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-20T19:19:44+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-25T20:17:02+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 </subtitle><entry><title type="html">CLRS 5.4: Probabilistic analysis and indicator random variables</title><link href="https://wongkj12.github.io/blog/2023/probabilistic-analysis/" rel="alternate" type="text/html" title="CLRS 5.4: Probabilistic analysis and indicator random variables" /><published>2023-07-20T16:03:00+00:00</published><updated>2023-07-20T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/probabilistic-analysis</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/probabilistic-analysis/"><![CDATA[<blockquote>
   <p><strong>Problem 5.4-6</strong></p>
 
@@ -22,7 +22,49 @@ has exactly one ball. \(P(Y_i) = (1-\frac{1}{n})^{n-1}\). Then the expectation i
 <p>Interestingly, since \((1+\frac{x}{n})^n \approx e^x\), both expectations actually
 tend to the same value, \(\frac{n}{e}\) when \(n\) is large.</p>
 
-\[\]]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><summary type="html"><![CDATA[More probabilistic problems]]></summary></entry><entry><title type="html">CLRS Appendix C: Tails of the binomial distribution (in progress)</title><link href="https://wongkj12.github.io/blog/2023/binomialtails/" rel="alternate" type="text/html" title="CLRS Appendix C: Tails of the binomial distribution (in progress)" /><published>2023-07-11T16:23:43+00:00</published><updated>2023-07-11T16:23:43+00:00</updated><id>https://wongkj12.github.io/blog/2023/binomialtails</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/binomialtails/"><![CDATA[<p>The <strong>tails</strong> of the binomial distribution refers to the two regions of the distribution \(b(k;n,p)\) that are far from the mean \(np\).</p>
+\[\]]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><summary type="html"><![CDATA[More probabilistic problems]]></summary></entry><entry><title type="html">CLRS 16.2: Greedy algorithms</title><link href="https://wongkj12.github.io/blog/2023/greedy/" rel="alternate" type="text/html" title="CLRS 16.2: Greedy algorithms" /><published>2023-07-20T16:03:00+00:00</published><updated>2023-07-20T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/greedy</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/greedy/"><![CDATA[<blockquote>
+  <p><strong>Problem 16.2-7</strong></p>
+
+  <p>Suppose you are given two sets \(A\) and \(B\), each containing \(n\) positive integers.
+You can choose to reorder each set however you like. After reordering, let \(a_i\) be
+the \(i\)-th element of set \(A\), and let \(b_i\) be the \(i\)-th element of set \(B\).
+You then receive a payoff of \(\prod_{i} a_i^{b_i}\). Give an algorithm that will
+maximise your payoff.</p>
+</blockquote>
+
+<hr />
+
+<p>Intuitively, it seems that sorting the sets \(A\) and \(B\) will maximise the payoff,
+by giving the greater exponents to the greater bases. We can prove that this is optimal.</p>
+
+<p>Let set \(A = {a_1,a_2,\ldots,a_n}\) be in sorted order. Suppose \(B\) is ordered such that
+there is some \(i,j\) such that \(i&lt;j\) but \(b_i &gt; b_j\). Note that the product \(a_i^{b_i}{a_j}^{b_j}\) is a factor of the final payoff, and we can just try to improve this factor. If we swap the positions of \(b_i\) and \(b_j\), the new product \(a_i^{b_j}a_j^{b_i}\) changes by a factor
+of \(a_i^{b_i-b_j}a_j^{b_j-b_i} &gt; a_i^{b_i-b_j}a_i^{b_j-b_i} = 1\), and thus increases.</p>
+
+<p>If \(B\) is in sorted order, then no such \(i,j\) will exist, and we can no longer improve
+the payoff by this process anymore. Thus sorting \(B\) must then provide the optimal payoff
+(Noting that an optimal payoff clearly exists).</p>
+
+<hr />
+
+<blockquote>
+  <p><strong>Problem 16.2-6</strong></p>
+
+  <p>Show how to solve the fractional knapsack problem in \(O(n)\) time.</p>
+</blockquote>
+
+<p>I was quite surprised to learn that there is an \(O(n)\) solution, but it kind of makes
+sense when comparing it to finding order statistics.</p>
+
+<p>The classic \(0-1\) knapsack problem has a thief robbing a store with \(n\) items.
+The \(i\)-th item is worth \(v_i\) dollars and weighs \(w_i\) pounds, where \(v_i\) and \(w_i\)
+are integers. The thief wants to maximise the value of his load, but he can carry at most \(W\) pounds in his knapsack, where \(W\) is an integer.</p>
+
+<p>In the fractional knapsack problem, the thief can take any fraction of each item. It is actually an easier problem, because we can greedily select the item with the best value-for-weight ratio, \(v_i/w_i\). Sorting the items by this ratio will take \(O(n\,log \,n)\).</p>
+
+<p>However, intuitively we are not particularly interested in the <em>order</em> of the items, so sorting is extra effort. Since we can only carry \(W\) pounds, as long as a set of the highest value-for-weight items have total weight less than \(W\), we are always taking the whole set (regardless of order). I found the following solution online:</p>
+
+<p>We can find the item of median value-for-weight in \(O(n)\) (using quickselect), and sum the weight of all items with value-for-weight greater than the median as \(M\). If \(M &gt; W\), then we know that the solution lies in taking items only among this collection, i.e. we are solving the fractional knapsack problem on input of size \(n/2\). If \(M &lt; W\), then we take all \(M\) pounds of high value-for-weight items, and solve the fractional knapsack problem again on the remaining \(n/2\) items. We have a runtime of \(T(n) = T(n/2) + O(n)\), which gives a total runtime of \(O(n)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><summary type="html"><![CDATA[Problem 16.2-7 Suppose you are given two sets \(A\) and \(B\), each containing \(n\) positive integers. You can choose to reorder each set however you like. After reordering, let \(a_i\) be the \(i\)-th element of set \(A\), and let \(b_i\) be the \(i\)-th element of set \(B\). You then receive a payoff of \(\prod_{i} a_i^{b_i}\). Give an algorithm that will maximise your payoff.]]></summary></entry><entry><title type="html">CLRS Appendix C: Tails of the binomial distribution (in progress)</title><link href="https://wongkj12.github.io/blog/2023/binomialtails/" rel="alternate" type="text/html" title="CLRS Appendix C: Tails of the binomial distribution (in progress)" /><published>2023-07-11T16:23:43+00:00</published><updated>2023-07-11T16:23:43+00:00</updated><id>https://wongkj12.github.io/blog/2023/binomialtails</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/binomialtails/"><![CDATA[<p>The <strong>tails</strong> of the binomial distribution refers to the two regions of the distribution \(b(k;n,p)\) that are far from the mean \(np\).</p>
 
 <p>First, we may provide bounds on the right tail of \(b(k;n,p)\). Let \(X\) be a random variable denoting the number of successes in \(n\) Bernoulli trials with probability of success \(p\), i.e. \(X \sim Bin(n,p)\). Then for \(0\leq k \leq n\),</p>
 
@@ -300,4 +342,4 @@ Then \(f\) being polynomially faster/slower than \(n^{log_b a}\) determines whet
 <p><strong>On the regularity condition in case 3</strong>: When you draw the recursion tree, \(af(n/b) \leq cf(n)\) for some \(c&lt;1\) implies
 that the root node is always greater than the sum of its’ children, i.e. work done at every level decreases by a factor of \(c\).
 Summing over all the levels, we get an upper bound of something like \(f(n) + cf(n) + c^2 f(n) + ... = f(n)(\frac{1}{1-c})\)
-(converges since \(c &lt; 1\)). Then \(f(n) = \Omega(n^{\log_b a + \epsilon})\) dominates the big-\(\Theta\) expression.</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><summary type="html"><![CDATA[Overview on the master theorem]]></summary></entry><entry><title type="html">MA2202 Cheatsheet</title><link href="https://wongkj12.github.io/blog/2023/ma2202/" rel="alternate" type="text/html" title="MA2202 Cheatsheet" /><published>2023-05-06T16:02:50+00:00</published><updated>2023-05-06T16:02:50+00:00</updated><id>https://wongkj12.github.io/blog/2023/ma2202</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/ma2202/"><![CDATA[]]></content><author><name></name></author><category term="notes" /><category term="math" /><summary type="html"><![CDATA[Cheatsheet for MA2202 (Algebra I) 22/23 Sem 2]]></summary></entry></feed>
+(converges since \(c &lt; 1\)). Then \(f(n) = \Omega(n^{\log_b a + \epsilon})\) dominates the big-\(\Theta\) expression.</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><summary type="html"><![CDATA[Overview on the master theorem]]></summary></entry></feed>
