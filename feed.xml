@@ -1,5 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-27T21:17:48+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">CLRS 16.3: Huffman codes</title><link href="https://wongkj12.github.io/blog/2023/huffman/" rel="alternate" type="text/html" title="CLRS 16.3: Huffman codes" /><published>2023-07-27T16:03:00+00:00</published><updated>2023-07-27T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/huffman</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/huffman/"><![CDATA[<p>The section introduces Huffman coding, a type of code used for data compression.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-30T16:04:59+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">CLRS 16.4: Matroids and greedy methods</title><link href="https://wongkj12.github.io/blog/2023/matroids/" rel="alternate" type="text/html" title="CLRS 16.4: Matroids and greedy methods" /><published>2023-07-28T16:03:00+00:00</published><updated>2023-07-28T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/matroids</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/matroids/"><![CDATA[<p>The section introduces matroids, an abstract combinatorial structure which sort of generalises the greedy approach. It is interesting that if we can cast a problem as a matroid, we can apply the exact same greedy method which yields optimal solutions. In fact - it is true that greedy is optimal on a problem <em>if and only if</em> the problem can be represented as a matroid!</p>
+
+<p>A <strong>matroid</strong> is an ordered pair \(M=(S,\mathcal{I})\) satisfying the following conditions:</p>
+
+<ol>
+  <li>\(S\) is a finite set.</li>
+  <li>\(\mathcal{I}\) is a nonempty family of subsets of \(S\), called the <em><strong>independent</strong></em> subsets of \(S\), such that if \(B\in \mathcal{I}\) and \(A\subseteq B\), then \(A\in \mathcal{I}\). We say that \(\mathcal{I}\) is <em><strong>hereditary</strong></em> if it satisfies this property. Note that \(\emptyset\) is neccessarily a member of \(\mathcal{I}\).</li>
+  <li>If \(A\in \mathcal{I}, B\in \mathcal{I}\), and \(\lvert A\rvert &lt; \lvert B\rvert\), then there exists some element \(x\in B - A\) such that \(A\cup \{x\} \in \mathcal{I}\). We say that \(M\) satisfies the <em><strong>exchange property</strong></em>.</li>
+</ol>
+
+<p>A natural example given is the <strong>graphic matroid</strong> \(M_G = (S_G, \mathcal{I}_G)\), defined in terms of an undirected graph \(G=(V,E)\) as follows:</p>
+
+<ul>
+  <li>The set \(S_G\) is defined to be \(E\)</li>
+  <li>A set of edges \(A\) is independent if and only if the subgraph \(G_A = (V,A)\) forms a forest (i.e. \(A\) is acyclic).</li>
+</ul>
+
+<p>\(M_G\), defined as such, is proven to be a matroid.</p>
+
+<p>Here is a summary of the other important definitions/theorems covered:</p>
+
+<ul>
+  <li>Given a matroid \(M=(S,\mathcal{I})\), we call an element \(x\notin A\) an <em><strong>extension</strong></em> of \(A\in\mathcal{I}\) if \(A\cup \{x\} \in \mathcal{I}\). With reference to the graphic matroid, an edge \(e\) is an extension to a forest \(A\) if and only if the addition of \(e\) does not create a cycle.</li>
+  <li>If \(A\) is an independent subset in a matroid \(M\), we say that \(A\) is <em><strong>maximal</strong></em> if it has no extensions.</li>
+  <li>(Theorem 16.6) All maximal independent subsets in a matroid have the same size. (e.g. all spanning trees are maximal independent subsets and have the same number of edges)</li>
+  <li>A matroid \(M=(S,\mathcal{I})\) is <em><strong>weighted</strong></em> if it is associated with a weight function \(w\) that assigns a striclty positive weight \(w(x)\) to each element \(x\in S\). The function \(w\) extends to subsets of \(S\) by summation, i.e. \(w(A) = \sum_{x\in A} w(x)\) for any \(A\subseteq S\). E.g. if we let \(w(e)\) denote the weight of an edge \(e\), then \(w(A)\) is the total weight of the edges in edge set \(A\).</li>
+  <li>Given a weighted matroid \(M=(S,\mathcal{I})\), suppose we sih to find an independent set \(A\in\mathcal{I}\) such that \(w(A)\) is maximised. We call such a subset an <em><strong>optimal</strong></em> subset of the matroid. Note that since \(w(x)\) is always positive, an optimal subset is always a maximal independent subset.</li>
+</ul>
+
+<hr />
+<p><strong>On maximal independent sets</strong></p>
+
+<p>A maximal independent set is called a <em>basis</em> for the matroid - as per linear algebra!. Matroids also serve to abstract the notion of <em>independence</em> in vector space, however I don’t feel qualified to expand on that here :(</p>
+
+<p><a href="https://jeremykun.com/2014/08/26/when-greedy-algorithms-are-perfect-the-matroid/">Interesting reference</a></p>
+
+<hr />
+
+<p>In other words, the <em><strong>maximum-spanning-tree problem</strong></em> on a connected undirected graph \(G=(V,E)\) boils down to finding an optimal subset of the weighted matroid \(M_G\), where weight function \(w(e)\) is the weight of the edge \(e\). This also corresponds easily to the <em>minimum</em>-spanning-tree problem, by tweaking \(w(e)\) slightly.</p>
+
+<p>The following is the “characteristic” greedy algorithm given which works for any weighted matroid. The algorithm takes as input a weighted matroid \(M=(S,\mathcal{I})\) with an associated positive weight function \(w\), and returns an optimal subset \(A\):</p>
+
+<ol>
+  <li>A = \(\emptyset\)</li>
+  <li>sort \(S\) into decreasing order by weight \(w\)</li>
+  <li>for each \(x\) in \(S\) taken in decreasing order:</li>
+  <li> if \(A \cup \{x\}\in \mathcal{I}\)</li>
+  <li>  \(A=A\cup \{x\}\)</li>
+  <li>return \(A\)</li>
+</ol>
+
+<p>If the check for independence on set \(A\cup\{x\}\) takes \(O(f(n))\), the entire algorithm runs in time \(O(n\,log\,n + nf(n))\).</p>
+
+<blockquote>
+  <p><strong>Problem 16.4-1</strong>
+Show that \((S,\mathcal{I_k})\) is a matroid, where \(S\) is any finite set and \(\mathcal{I_k}\) is the set of all subsets of size at most \(k\), where \(k\leq \lvert S \rvert\).</p>
+</blockquote>
+
+<p>Proof:</p>
+
+<p>Since \(S\) is finite, it suffices to show the <em>hereditary</em> and <em>exchange</em> properties.</p>
+
+<p>For any \(A\in\mathcal{I_k}\,\), if \(B \subseteq A\), then \(\lvert B\rvert \leq \lvert A\rvert \leq k\). Thus \(B \in \mathcal{I_k}\) and \(\mathcal{I_k}\) is <em>hereditary</em>.</p>
+
+<p>If \(A\in\mathcal{I_k}, B\in\mathcal{I_k}\) and \(\lvert A\rvert &lt; \lvert B\rvert\), then pick an element \(x \in B - A\). We have \(\lvert A\cup \{x\}\rvert = \lvert A\rvert + 1 \leq \lvert B\rvert \leq k\), thus \(A\cup\{x\} \in \mathcal{I_k}\). Hence \((S,\mathcal{I_k})\) satisfies the <em>exchange property</em>.</p>
+
+<blockquote>
+  <p><strong>Problem 16.4-2</strong>
+Given an \(m \times n\) matrix \(T\) over some field, show that \((S,\mathcal{I})\) is a matroid, where \(S\) is the set of columns of \(T\) and \(A\in\mathcal{I}\) if and only if the columns in \(A\) are linearly independent. ()</p>
+</blockquote>
+
+<p>Proof:</p>
+
+<p>Linear algebra.</p>
+
+<blockquote>
+  <p><strong>Problem 16.4-3</strong>
+Show that if \((S,\mathcal{I})\) is a matroid, then \((S,\mathcal{I}')\) is a matroid, where \(\mathcal{I}' = \{A':S-A' \,\text{contains some maximal}\, A\in \mathcal{I}\}\), that is, the maximal independent sets of \((S,\mathcal{I}')\) are just the complements of the maximal independent sets of \((S,\mathcal{I})\).</p>
+</blockquote>
+
+<p>Proof:</p>
+
+<p>It suffices to show the <em>hereditary</em> and <em>exchange</em> properties hold on \(\mathcal{I'}\).</p>
+
+<p>Suppose \(A\in\mathcal{I'}\), that is there is some maximal \(X\subseteq\mathcal{I}\) contained within \(S-A\). Let any \(B\subseteq A\), then \(X\subseteq S - A \subseteq S-B\), thus \(B\in \mathcal{I'}\), and \(\mathcal{I'}\) is <em>hereditary</em>.</p>
+
+<p>Consider any \(A,B \in \mathcal{I}'\) such that \(\lvert A\rvert &lt; \lvert B\rvert\). We split into two cases.</p>
+
+<p>Case 1: If \(\lvert B-A\rvert = 1\), then in this case \(A\subset B\), and we can simply extend \(A\) to \(B\) for the exchange property to hold.</p>
+
+<p>Case 2: Let \(m\) be the size of any maximal independent set in \(\mathcal{I}\), and let \(Q\) be some maximal independent set contained in \(S-B\). Note \(\lvert T\rvert = m\). Then let \(P\) be some size \(m-1\)-subset of some maximal independent set in \(S-A\). By the exchange property on \(\mathcal{I}\), there exists some \(x\) in \(Q-P\) such that \(P\cup\{x\}\) is a maximal independent set. Since \(\lvert B-A\rvert &gt; 1\), there must be an element \(y\in B-A\), \(y\neq x\) such that \(S-(A\cup\{y\})\) contains \(P\cup\{x\}\), i.e. we have extended \(A\) to another independent set in \(\mathcal{I}'\).</p>
+
+<p>Note: I think this is known as the <em>dual</em> of a matroid \(M\).</p>
+
+<blockquote>
+  <p><strong>Problem 16.4-4</strong>
+Let \(S\) be a finite set and let \(S_1, S_2, \ldots ,S_k\) be a partition of \(S\) into nonempty disjoint subsets. Define the structure \((S,\mathcal{I})\) by the condition that \(\mathcal{I} = \{A:\lvert A\cap S_i\rvert \leq 1\,\text{for}\, i=1,2,\ldots,k\}\). Show that \((S,\mathcal{I})\) is a matroid. That is, the set of all sets \(A\) that contain at most one member of each subset in the partition determines the independent sets of a matroid.</p>
+</blockquote>
+
+<p>Proof:</p>
+
+<p>Hereditary property - Let \(A\in\mathcal{I}\), and suppose \(B\subseteq A\). Then clearly \(\lvert B\cap S_i\rvert \leq \lvert A\cap S_i\rvert \leq 1\) for any disjoint subset \(S_i\). Thus \(B\in \mathcal{I}\).</p>
+
+<p>Exchange property - Let \(A,B \in \mathcal{I}\) such that \(\lvert A\rvert &lt; \lvert B\rvert\). Each element in \(B\) must be in distinct subsets of the partition, and similarly for \(A\). Since \(\lvert A\rvert &lt; \lvert B\rvert\), there must be some \(x \in B\) such that \(x \in S_i\) and \(\lvert A\cap S_i\rvert = 0\), for some subset of the partition \(S_i\). Then we can extend \(A\) to \(A\cup\{x\}\), satisfying the exchange property.</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><summary type="html"><![CDATA[The section introduces matroids, an abstract combinatorial structure which sort of generalises the greedy approach. It is interesting that if we can cast a problem as a matroid, we can apply the exact same greedy method which yields optimal solutions. In fact - it is true that greedy is optimal on a problem if and only if the problem can be represented as a matroid!]]></summary></entry><entry><title type="html">CLRS 16.3: Huffman codes</title><link href="https://wongkj12.github.io/blog/2023/huffman/" rel="alternate" type="text/html" title="CLRS 16.3: Huffman codes" /><published>2023-07-27T16:03:00+00:00</published><updated>2023-07-27T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/huffman</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/huffman/"><![CDATA[<p>The section introduces Huffman coding, a type of code used for data compression.</p>
 
 <p>Suppose we want to encode a long string of characters by encoding each character as a unique binary string. How can we minimise the number of bits? Here is an example of how we might encode each character:</p>
 
@@ -312,65 +415,4 @@ Suppose there is no path connecting \(u\) and \(v\) in \(G\). Then add the edge 
 
 <p>A. \(G\) is connected \(\Rightarrow \lvert E\rvert \geq \lvert V\rvert-1\).</p>
 
-<p>B. \(G\) is acyclic \(\Rightarrow  \lvert E\rvert \leq \lvert V\rvert-1\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On trees]]></summary></entry><entry><title type="html">CLRS Appendix C: Some probability and bounds</title><link href="https://wongkj12.github.io/blog/2023/probability/" rel="alternate" type="text/html" title="CLRS Appendix C: Some probability and bounds" /><published>2023-05-08T16:03:50+00:00</published><updated>2023-05-08T16:03:50+00:00</updated><id>https://wongkj12.github.io/blog/2023/probability</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/probability/"><![CDATA[<p>An interesting problem (simulating an unbiased coin given a biased one):</p>
-
-<blockquote>
-  <p><strong>Exercise 5.1-3 (rephrased)</strong></p>
-
-  <p>Suppose you want to output 0 with probability 1/2 and 1 with probability 1/2.
-You have a biased function \(R\) which outputs 1 with probability \(p\), and 0 with probability
-\(1-p\), where \(0 &lt; p &lt; 1\). Give an algorithm which uses \(R\) to output
-an unbiased answer. What is the expected running time?</p>
-</blockquote>
-
-<p>Call \(R\) twice and store the results in variables \(x\) and \(y\). Note that since \(x\) and \(y\)
-are independent and have the same distribution, by symmetry, \(P(x &lt; y) = P(x &gt; y)\), so we just output 1 whenever
-\(x &gt; y\), 0 if \(x &lt; y\), and repeat otherwise. The probability of termination in one iteration is constant, equal to
-\(P(x \neq y) = 2p(1-p)\), so the number of iterations until termination follows a geometric distribution. Thus in expectation,
-the number of iterations will be \(\frac{1}{2p(1-p)}\).</p>
-
-<hr />
-
-<p>While I learn probability, here I’ll list some interesting bounds/formulas from Appendix C:</p>
-
-<p><strong>Stirling’s approximation (3.18)</strong></p>
-
-\[n! = \sqrt{2\pi n}\left(\frac{n}{e}\right)^n (1+\Theta(1/n)).\]
-
-<p><strong>Binomial bounds</strong></p>
-
-\[{n\choose k} = \left(\frac{n}{k}\right)\left(\frac{n-1}{k-1}\right)\cdots\left(\frac{n-k+1}{1}\right) \geq \left(\frac{n}{k}\right)^k.\]
-
-\[{n\choose k} \leq \frac{n^k}{k!} \leq \left(\frac{en}{k}\right)^k.\]
-
-\[{n\choose k} \leq \frac{n^n}{k^k (n-k)^{n-k}}.\]
-
-<p><strong>Boole’s inequality/Union bound</strong></p>
-
-\[P\left(\bigcup_i A_i\right) \leq \sum_i P(A_i).\]
-
-<p><strong>Jensen’s inequality (Probabilistic form)</strong></p>
-
-<p>If \(X\) is a random variable and \(f\) is a <em>convex</em> function (i.e. for all \(x,y\) and all \(0 \leq \lambda \leq 1\), we have
-\(f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y)\)), then</p>
-
-\[\mathbb{E}(f(X)) \geq f(\mathbb{E}(X)),\]
-
-<p>provided that the expectations exist and are finite.</p>
-
-<p><strong>Markov’s inequality (Exercise C.3-6)</strong></p>
-
-<p>Let X be a nonnegative random variable, and suppose that \(\mathbb{E}(X)\) is well-defined. Then</p>
-
-\[P(X\geq t) \leq \mathbb{E}(X)/t\]
-
-<p>for all \(t&gt;0\). To see this note that</p>
-
-\[\begin{aligned}
-\mathbb{E}(X) &amp;= \int_{0}^{\infty} xP(X=x)\, dx \\
-&amp;= \int_{0}^{t} xP(X=x)\, dx + \int_{t}^{\infty} xP(X=x)\, dx \\
-&amp;\geq \int_{t}^{\infty} xP(X=x)\, dx \\
-&amp;\geq \int_{t}^{\infty} tP(X=x)\, dx \\
-&amp;\geq t\int_{t}^{\infty} P(X=x)\, dx \\
-&amp;\geq tP(X&gt;t).
-\end{aligned}\]]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[Some probability and useful bounds]]></summary></entry></feed>
+<p>B. \(G\) is acyclic \(\Rightarrow  \lvert E\rvert \leq \lvert V\rvert-1\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On trees]]></summary></entry></feed>

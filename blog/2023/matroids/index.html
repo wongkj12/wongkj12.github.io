@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>notes | wongkj12</title>
+    <title>CLRS 16.4: Matroids and greedy methods | wongkj12</title>
     <meta name="author" content="Wong  Kai Jie">
     <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 ">
@@ -39,7 +39,7 @@
     <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://wongkj12.github.io/blog/category/notes/">
+    <link rel="canonical" href="https://wongkj12.github.io/blog/2023/matroids/">
 
     <!-- Dark Mode -->
     
@@ -111,112 +111,138 @@
     <!-- Content -->
     <div class="container mt-5">
       
-        <div class="post">
+        <!-- _layouts/post.html -->
+
+<div class="post">
 
   <header class="post-header">
-    <h1 class="post-title"> <i class="fas fa-tag fa-sm"></i> notes </h1>
-    <p class="post-description"> an archive of posts in this category </p>
+    <h1 class="post-title">CLRS 16.4: Matroids and greedy methods</h1>
+    <p class="post-meta">July 28, 2023</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+        ·  
+        <a href="/blog/tag/clrs">
+          <i class="fas fa-hashtag fa-sm"></i> clrs</a>  
+          
+        ·  
+        <a href="/blog/category/notes">
+          <i class="fas fa-tag fa-sm"></i> notes</a>  
+          
+
+    </p>
   </header>
 
-  <article>
-    <div class="table-responsive">
-      <table class="table table-sm table-borderless">
-        
-        <tr>
-          <th scope="row">Jul 28, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/matroids/">CLRS 16.4: Matroids and greedy methods</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">Jul 27, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/huffman/">CLRS 16.3: Huffman codes</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">Jul 25, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/greedy/">CLRS 16.2: Greedy algorithms</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">Jul 20, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/probabilistic-analysis/">CLRS 5.4: Probabilistic analysis and indicator random variables</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">Jul 11, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/binomialtails/">CLRS Appendix C: Tails of the binomial distribution (in progress)</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">Jul 3, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/moregraphtheory/">CLRS Appendix B: More graph theory, and Dirac's theorem</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">Jul 2, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/graphcoloringtheorem/">CLRS Appendix B: A theorem on graph coloring</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">Jun 29, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/treeproblems/">CLRS Appendix B: Three problems on trees</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">Jun 29, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/comparing-bernoulli/">CLRS Appendix C: Comparing sums of Bernoulli trials</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">Jun 26, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/trees/">CLRS Appendix B: Equivalent conditions for trees</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">May 8, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/probability/">CLRS Appendix C: Some probability and bounds</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">May 6, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/mt/">CLRS 4.5-4.6: Master Theorem</a>
-          </td>
-        </tr>
-      
-        <tr>
-          <th scope="row">May 6, 2023</th>
-          <td>
-              <a class="post-link" href="/blog/2023/ma2202/">MA2202 Cheatsheet</a>
-          </td>
-        </tr>
-      
-      </table>
+  <article class="post-content">
+    
+    <div id="markdown-content">
+      <p>The section introduces matroids, an abstract combinatorial structure which sort of generalises the greedy approach. It is interesting that if we can cast a problem as a matroid, we can apply the exact same greedy method which yields optimal solutions. In fact - it is true that greedy is optimal on a problem <em>if and only if</em> the problem can be represented as a matroid!</p>
+
+<p>A <strong>matroid</strong> is an ordered pair \(M=(S,\mathcal{I})\) satisfying the following conditions:</p>
+
+<ol>
+  <li>\(S\) is a finite set.</li>
+  <li>\(\mathcal{I}\) is a nonempty family of subsets of \(S\), called the <em><strong>independent</strong></em> subsets of \(S\), such that if \(B\in \mathcal{I}\) and \(A\subseteq B\), then \(A\in \mathcal{I}\). We say that \(\mathcal{I}\) is <em><strong>hereditary</strong></em> if it satisfies this property. Note that \(\emptyset\) is neccessarily a member of \(\mathcal{I}\).</li>
+  <li>If \(A\in \mathcal{I}, B\in \mathcal{I}\), and \(\lvert A\rvert &lt; \lvert B\rvert\), then there exists some element \(x\in B - A\) such that \(A\cup \{x\} \in \mathcal{I}\). We say that \(M\) satisfies the <em><strong>exchange property</strong></em>.</li>
+</ol>
+
+<p>A natural example given is the <strong>graphic matroid</strong> \(M_G = (S_G, \mathcal{I}_G)\), defined in terms of an undirected graph \(G=(V,E)\) as follows:</p>
+
+<ul>
+  <li>The set \(S_G\) is defined to be \(E\)</li>
+  <li>A set of edges \(A\) is independent if and only if the subgraph \(G_A = (V,A)\) forms a forest (i.e. \(A\) is acyclic).</li>
+</ul>
+
+<p>\(M_G\), defined as such, is proven to be a matroid.</p>
+
+<p>Here is a summary of the other important definitions/theorems covered:</p>
+
+<ul>
+  <li>Given a matroid \(M=(S,\mathcal{I})\), we call an element \(x\notin A\) an <em><strong>extension</strong></em> of \(A\in\mathcal{I}\) if \(A\cup \{x\} \in \mathcal{I}\). With reference to the graphic matroid, an edge \(e\) is an extension to a forest \(A\) if and only if the addition of \(e\) does not create a cycle.</li>
+  <li>If \(A\) is an independent subset in a matroid \(M\), we say that \(A\) is <em><strong>maximal</strong></em> if it has no extensions.</li>
+  <li>(Theorem 16.6) All maximal independent subsets in a matroid have the same size. (e.g. all spanning trees are maximal independent subsets and have the same number of edges)</li>
+  <li>A matroid \(M=(S,\mathcal{I})\) is <em><strong>weighted</strong></em> if it is associated with a weight function \(w\) that assigns a striclty positive weight \(w(x)\) to each element \(x\in S\). The function \(w\) extends to subsets of \(S\) by summation, i.e. \(w(A) = \sum_{x\in A} w(x)\) for any \(A\subseteq S\). E.g. if we let \(w(e)\) denote the weight of an edge \(e\), then \(w(A)\) is the total weight of the edges in edge set \(A\).</li>
+  <li>Given a weighted matroid \(M=(S,\mathcal{I})\), suppose we sih to find an independent set \(A\in\mathcal{I}\) such that \(w(A)\) is maximised. We call such a subset an <em><strong>optimal</strong></em> subset of the matroid. Note that since \(w(x)\) is always positive, an optimal subset is always a maximal independent subset.</li>
+</ul>
+
+<hr>
+<p><strong>On maximal independent sets</strong></p>
+
+<p>A maximal independent set is called a <em>basis</em> for the matroid - as per linear algebra!. Matroids also serve to abstract the notion of <em>independence</em> in vector space, however I don’t feel qualified to expand on that here :(</p>
+
+<p><a href="https://jeremykun.com/2014/08/26/when-greedy-algorithms-are-perfect-the-matroid/" rel="external nofollow noopener" target="_blank">Interesting reference</a></p>
+
+<hr>
+
+<p>In other words, the <em><strong>maximum-spanning-tree problem</strong></em> on a connected undirected graph \(G=(V,E)\) boils down to finding an optimal subset of the weighted matroid \(M_G\), where weight function \(w(e)\) is the weight of the edge \(e\). This also corresponds easily to the <em>minimum</em>-spanning-tree problem, by tweaking \(w(e)\) slightly.</p>
+
+<p>The following is the “characteristic” greedy algorithm given which works for any weighted matroid. The algorithm takes as input a weighted matroid \(M=(S,\mathcal{I})\) with an associated positive weight function \(w\), and returns an optimal subset \(A\):</p>
+
+<ol>
+  <li>A = \(\emptyset\)</li>
+  <li>sort \(S\) into decreasing order by weight \(w\)</li>
+  <li>for each \(x\) in \(S\) taken in decreasing order:</li>
+  <li> if \(A \cup \{x\}\in \mathcal{I}\)</li>
+  <li>  \(A=A\cup \{x\}\)</li>
+  <li>return \(A\)</li>
+</ol>
+
+<p>If the check for independence on set \(A\cup\{x\}\) takes \(O(f(n))\), the entire algorithm runs in time \(O(n\,log\,n + nf(n))\).</p>
+
+<blockquote>
+  <p><strong>Problem 16.4-1</strong>
+Show that \((S,\mathcal{I_k})\) is a matroid, where \(S\) is any finite set and \(\mathcal{I_k}\) is the set of all subsets of size at most \(k\), where \(k\leq \lvert S \rvert\).</p>
+</blockquote>
+
+<p>Proof:</p>
+
+<p>Since \(S\) is finite, it suffices to show the <em>hereditary</em> and <em>exchange</em> properties.</p>
+
+<p>For any \(A\in\mathcal{I_k}\,\), if \(B \subseteq A\), then \(\lvert B\rvert \leq \lvert A\rvert \leq k\). Thus \(B \in \mathcal{I_k}\) and \(\mathcal{I_k}\) is <em>hereditary</em>.</p>
+
+<p>If \(A\in\mathcal{I_k}, B\in\mathcal{I_k}\) and \(\lvert A\rvert &lt; \lvert B\rvert\), then pick an element \(x \in B - A\). We have \(\lvert A\cup \{x\}\rvert = \lvert A\rvert + 1 \leq \lvert B\rvert \leq k\), thus \(A\cup\{x\} \in \mathcal{I_k}\). Hence \((S,\mathcal{I_k})\) satisfies the <em>exchange property</em>.</p>
+
+<blockquote>
+  <p><strong>Problem 16.4-2</strong>
+Given an \(m \times n\) matrix \(T\) over some field, show that \((S,\mathcal{I})\) is a matroid, where \(S\) is the set of columns of \(T\) and \(A\in\mathcal{I}\) if and only if the columns in \(A\) are linearly independent. ()</p>
+</blockquote>
+
+<p>Proof:</p>
+
+<p>Linear algebra.</p>
+
+<blockquote>
+  <p><strong>Problem 16.4-3</strong>
+Show that if \((S,\mathcal{I})\) is a matroid, then \((S,\mathcal{I}')\) is a matroid, where \(\mathcal{I}' = \{A':S-A' \,\text{contains some maximal}\, A\in \mathcal{I}\}\), that is, the maximal independent sets of \((S,\mathcal{I}')\) are just the complements of the maximal independent sets of \((S,\mathcal{I})\).</p>
+</blockquote>
+
+<p>Proof:</p>
+
+<p>It suffices to show the <em>hereditary</em> and <em>exchange</em> properties hold on \(\mathcal{I'}\).</p>
+
+<p>Suppose \(A\in\mathcal{I'}\), that is there is some maximal \(X\subseteq\mathcal{I}\) contained within \(S-A\). Let any \(B\subseteq A\), then \(X\subseteq S - A \subseteq S-B\), thus \(B\in \mathcal{I'}\), and \(\mathcal{I'}\) is <em>hereditary</em>.</p>
+
+<p>Consider any \(A,B \in \mathcal{I}'\) such that \(\lvert A\rvert &lt; \lvert B\rvert\). We split into two cases.</p>
+
+<p>Case 1: If \(\lvert B-A\rvert = 1\), then in this case \(A\subset B\), and we can simply extend \(A\) to \(B\) for the exchange property to hold.</p>
+
+<p>Case 2: Let \(m\) be the size of any maximal independent set in \(\mathcal{I}\), and let \(Q\) be some maximal independent set contained in \(S-B\). Note \(\lvert T\rvert = m\). Then let \(P\) be some size \(m-1\)-subset of some maximal independent set in \(S-A\). By the exchange property on \(\mathcal{I}\), there exists some \(x\) in \(Q-P\) such that \(P\cup\{x\}\) is a maximal independent set. Since \(\lvert B-A\rvert &gt; 1\), there must be an element \(y\in B-A\), \(y\neq x\) such that \(S-(A\cup\{y\})\) contains \(P\cup\{x\}\), i.e. we have extended \(A\) to another independent set in \(\mathcal{I}'\).</p>
+
+<p>Note: I think this is known as the <em>dual</em> of a matroid \(M\).</p>
+
+<blockquote>
+  <p><strong>Problem 16.4-4</strong>
+Let \(S\) be a finite set and let \(S_1, S_2, \ldots ,S_k\) be a partition of \(S\) into nonempty disjoint subsets. Define the structure \((S,\mathcal{I})\) by the condition that \(\mathcal{I} = \{A:\lvert A\cap S_i\rvert \leq 1\,\text{for}\, i=1,2,\ldots,k\}\). Show that \((S,\mathcal{I})\) is a matroid. That is, the set of all sets \(A\) that contain at most one member of each subset in the partition determines the independent sets of a matroid.</p>
+</blockquote>
+
+<p>Proof:</p>
+
+<p>Hereditary property - Let \(A\in\mathcal{I}\), and suppose \(B\subseteq A\). Then clearly \(\lvert B\cap S_i\rvert \leq \lvert A\cap S_i\rvert \leq 1\) for any disjoint subset \(S_i\). Thus \(B\in \mathcal{I}\).</p>
+
+<p>Exchange property - Let \(A,B \in \mathcal{I}\) such that \(\lvert A\rvert &lt; \lvert B\rvert\). Each element in \(B\) must be in distinct subsets of the partition, and similarly for \(A\). Since \(\lvert A\rvert &lt; \lvert B\rvert\), there must be some \(x \in B\) such that \(x \in S_i\) and \(\lvert A\cap S_i\rvert = 0\), for some subset of the partition \(S_i\). Then we can extend \(A\) to \(A\cup\{x\}\), satisfying the exchange property.</p>
+
+
     </div>
   </article>
-
 </div>
 
       
