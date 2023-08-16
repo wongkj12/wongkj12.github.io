@@ -1,5 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-30T16:04:59+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">CLRS 16.4: Matroids and greedy methods</title><link href="https://wongkj12.github.io/blog/2023/matroids/" rel="alternate" type="text/html" title="CLRS 16.4: Matroids and greedy methods" /><published>2023-07-28T16:03:00+00:00</published><updated>2023-07-28T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/matroids</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/matroids/"><![CDATA[<p>The section introduces matroids, an abstract combinatorial structure which sort of generalises the greedy approach. It is interesting that if we can cast a problem as a matroid, we can apply the exact same greedy method which yields optimal solutions. In fact - it is true that greedy is optimal on a problem <em>if and only if</em> the problem can be represented as a matroid!</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-08-16T08:47:29+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">The Lazy Susan puzzle</title><link href="https://wongkj12.github.io/blog/2023/lazysusan/" rel="alternate" type="text/html" title="The Lazy Susan puzzle" /><published>2023-08-15T16:10:00+00:00</published><updated>2023-08-15T16:10:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/lazysusan</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/lazysusan/"><![CDATA[<p>Here is an interesting problem I encountered a long while ago:</p>
+
+<blockquote>
+  <p>A genie arranges \(2^n\) coins in a circle on a Lazy Susan. They are randomly oriented, and you are blindfolded so that you cannot tell whether a coin is facing heads or tails. A round consists of you flipping any number of the coins in front of you. If all coins are facing the same direction (i.e all heads or all tails), then the game ends. Otherwise, the genie then rotates the Lazy Susan by a <em>random</em> angle, and the next round begins. Devise an algorithm to be able to end the game in a finite number of rounds.</p>
+</blockquote>
+
+<p>It was quite surprising that a solution even exists, considering that we have so little information!</p>
+
+<p>Here is an example of solving a game in 7 rounds when \(n=2\). We can represent the coins as a string of ‘1’s and ‘0’s (heads or tails), and we can also represent a flip action as a string of ‘1’s and ‘0’s, where a ‘1’ at position k indicates that we flip the coin at position k.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0010
+1000 (flip 1010)
+0001 (genie rotates by 3 clockwise)
+1101 (flip 1100)
+0111 (genie rotates by 2 clockwise)
+1101 (flip 1010)
+1110 (genie rotates by 1 clockwise)
+0110 (flip 1000)
+0110 (genie rotates by 0 clockwise)
+1100 (flip 1010)
+0110 (genie rotates by 1 clockwise)
+1010 (flip 1100)
+0101 (genie rotates by 1 clockwise)
+1111 (flip 1010 END)
+</code></pre></div></div>
+
+<p>The sequence of moves shown above is in fact a deterministic solution for n = 2. Any n = 2 game will terminate within these 7 rounds! If we name the moves \(A=1010\), \(B=1100\), \(C=1000\), the solution is the pattern \(ABACABA\). In general, the solution for arbitrary n can be shown inductively to be the following:</p>
+
+<p><em>Suppose the sequence of moves \(s_1,s_2,\ldots,s_k\) is a solution for \(2^{n-1}\) coins. Then let \(m_i = s_i\cdot s_i\) (concatenation of \(s_i\) to itself), and \(m_i' = s_i\cdot 00\ldots 00\) (concatenation of \(s_i\) to \(2^{n-1}\) zeroes). Let the move \(d = 11\ldots 1100\ldots 00\) (\(2^{n-1}\) ones followed by \(2^{n-1}\) zeroes), and define the sequence \(S=(m_1,m_2,\ldots,m_k)\). Then the sequence \(S,d,S,m_1',S,d,S,m_2',S,d,S,m_3',\ldots,m_k',S,d,S\) is a solution for \(2^n\) coins.</em></p>
+
+<p><strong>Proof:</strong></p>
+
+<p>The solution boils down to the two rough ideas:</p>
+
+<ol>
+  <li>
+    <p>If a configuration for \(2^n\) coins is symmetrical, then we can apply the solution for \(2^{n-1}\) coins symmetrically (we do this whenever we apply S every other move).</p>
+  </li>
+  <li>
+    <p>Otherwise, we apply a move in S “asymmetrically” to make the configuration closer to symmetry. (i.e. we apply the moves \(m_i'\) in between every “S, d, S”).</p>
+  </li>
+</ol>
+
+<p>The addition of the moves ‘d’ will be explained in (2).</p>
+
+<p>For (1):</p>
+
+<p>Consider the symmetrical configuration 11001100. Rotated by 1 clockwise, it becomes 01100110. This is the same as rotating “1100” by 1 clockwise to “0110”, then concatenating it to itself. In other words, symmetry is always maintained after rotation, and is equivalent to rotating each symmetric half seperately. (To prove this more formally, consider any symmetric configuration \(a_1a_2\ldots a_ka_1a_2\ldots a_k\). After rotation by 1 clockwise, it becomes \(a_ka_1a_2\ldots a_{k-1}a_ka_1a_2\ldots a_{k-1}\), which is \(a_ka_1a_2\ldots a_{k-1}\) concatenated to itself, i.e. the rotation acts symmetrically. For any arbitrary rotation by k, we can then continue inductively.)</p>
+
+<p>Thus for symmetrical configurations in \(2^n\) coins, it is equivalent to solving for \(2^{n-1}\) coins symmetrically.</p>
+
+<p>For (2):</p>
+
+<p>What if the configuration is not symmetrical, and how can we make it symmetrical? For any given configuration \(L\cdot R\) (where \(L\) and \(R\) are the left and right halves of \(2^{n-1}\) coins respectively), we can think about the string \(Q = L \oplus R\) (where \(\oplus\) is the XOR operation). For example, given the configuration \(11001010\), \(Q=1100\oplus 1010 = 0110\). On the other hand, if a configuration is already symmetric, then \(Q=L\oplus R = L\oplus L = 00\ldots00\). If we rotate \(11001010\) by 1 clockwise to \(01100101\), then \(Q\) becomes \(0011\) - in other words, \(Q\) is also rotated by 1 clockwise. In general, whenever a rotation is applied to a configuration, \(Q\) is also rotated by the same amount! (Can be proven formally in a similar manner as in (1))</p>
+
+<p>Next, notice that applying a flip “asymmetrically” allows us to change \(Q\) accordingly. For example, given the configuration \(01001100, Q=1000\), after applying the flip \(1000\cdot 0000\), \(Q\) becomes \(0000\). This was equivalent to applying the “flip” \(1000\) to \(Q\).</p>
+
+<p>Now, if a configuration is not symmetrical, there are 2 cases to consider: \(Q=11\ldots 11\) and \(Q\neq 11\ldots 11\). If \(Q=11\ldots 11\), then we can simply apply the flip \(d=11\ldots 1100\ldots 00\) to make \(Q=00\ldots 00\).</p>
+
+<p>If \(Q \neq 11\ldots 11\), then making \(Q=00\ldots 00\) is equivalent to solving the game in \(2^{n-1}\) coins, thus we apply the sequence of flips asymmetrically!</p>
+
+<p>Finally, note that whenever we apply the symmetrical moves \(S\), \(Q\) is invariant (up to rotations). Hence the sequence \(S,d,S,m_1',S,d,S,m_2',S,d,S,m_3',\ldots,m_k',S,d,S\) must solve the game, for a maximum of \(2^{2^{n-1}}-1\) rounds.</p>
+
+<hr />
+
+<p>We could take advantage of symmetry because the number of coins, \(N\), was a power of two. However, what about other values of \(N\)? <strong>It turns out that only tables with \(N=2^n\) coins can be solved deterministically!</strong></p>
+
+<p><strong>Proof</strong>:</p>
+
+<p>First, we show that no tables where \(N\) is odd can be solved deterministically.</p>
+
+<p>Take \(N=9\), and consider a periodic configuration like \(100100100\). Since we are blindfolded, we never know which exact configurations the coins can be in, only what they may rotate to. Thus we only look at all possible rotations of \(100100100\), i.e. the <em>orbit</em> \(\{100100100,010010010,001001001\}\) (“orbit” as per group theory). This orbit has size 3 since \(100100100\) is periodic under rotation with cycle length 3. For odd \(N\), aside from the solved orbits \(\{00\ldots 00\}\) and \(\{11\ldots 11\}\), all orbits have size \(&gt;2\) since 2 does not divide \(N\) and thus a configuration cannot be periodic with cycle length 2. However, each flip can only solve at most 2 configurations at once (e.g. the flip 10011 solves configurations 10011 and 01100) - in <em>any</em> orbit with size \(&gt;2\), there will be a nonzero probability of failure. Thus the number of rounds played can be arbitrarily large, and odd tables cannot be solved deterministically.</p>
+
+<p>Next, we show that having a solution for \(N\) coins implies there is a solution for \(N/2\) coins.</p>
+
+<p>Solving the \(N\) coin case means we are able to bring any asymmetric configuration in \(N\) coins to a symmetric one. In other words, we can make the quantity \(Q=L-R\) zero, which is equivalent to the \(N/2\) coin problem.</p>
+
+<p>Combining the above two facts, we can see that only tables of size \(2^n\) may be solved deterministically.</p>]]></content><author><name></name></author><category term="notes" /><category term="math" /><summary type="html"><![CDATA[An interesting puzzle on a Lazy Susan]]></summary></entry><entry><title type="html">CLRS 16.4: Matroids and greedy methods</title><link href="https://wongkj12.github.io/blog/2023/matroids/" rel="alternate" type="text/html" title="CLRS 16.4: Matroids and greedy methods" /><published>2023-07-28T16:03:00+00:00</published><updated>2023-07-28T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/matroids</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/matroids/"><![CDATA[<p>The section introduces matroids, an abstract combinatorial structure which sort of generalises the greedy approach. It is interesting that if we can cast a problem as a matroid, we can apply the exact same greedy method which yields optimal solutions. In fact - it is true that greedy is optimal on a problem <em>if and only if</em> the problem can be represented as a matroid!</p>
 
 <p>A <strong>matroid</strong> is an ordered pair \(M=(S,\mathcal{I})\) satisfying the following conditions:</p>
 
@@ -376,43 +453,4 @@ D &amp;= D_l + D_r + 1 \\
   <p>Show that if \(L\geq 2\), then every binary tree with \(L\) leaves contains a subtree having between \(L/3\) and \(2L/3\) leaves, inclusive.</p>
 </blockquote>
 
-<p><strong>Proof by contradiction</strong>: Suppose that there is a binary tree with \(L\) leaves, with no subtrees having between \(L/3\) and \(2L/3\) leaves. If \(L\geq 2\), then the root of this tree cannot be a leaf. Take the path \(x_0 = root, x_1, \ldots , x_k\) on the tree down to a leaf, at each step picking the child subtree with the larger number of leaves. Consider the number of leaves of the subtree rooted at each \(x_i\). Clearly the number of leaves is a decreasing sequence, so along the path the number of leaves must decrement from \(x_i\) with more than \(2L/3\) leaves to \(x_{i+1}\) with less than \(L/3\) leaves. However, if \(x_i\) has less than \(L/3\) leaves, then \(x_{i+1}\) must have had less than \(2L/3\) leaves, a contradiction.</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[Three tree problems from Appendix B]]></summary></entry><entry><title type="html">CLRS Appendix B: Equivalent conditions for trees</title><link href="https://wongkj12.github.io/blog/2023/trees/" rel="alternate" type="text/html" title="CLRS Appendix B: Equivalent conditions for trees" /><published>2023-06-26T16:01:20+00:00</published><updated>2023-06-26T16:01:20+00:00</updated><id>https://wongkj12.github.io/blog/2023/trees</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/trees/"><![CDATA[<p>A <em>tree</em> is a connected, acyclic (undirected) graph. Let \(G = (V,E)\) be an undirected graph. Here are some equivalent conditions for \(G\) to be a tree:</p>
-
-<ol>
-  <li>\(G\) is a tree.</li>
-  <li>Any two vertices in \(G\) are connected by a unique simple path.</li>
-  <li>\(G\) is connected, but if any edge is removed from \(E\), the resulting graph is disconnected.</li>
-  <li>\(G\) is connected, and \(\lvert E\rvert= \lvert V\rvert-1\).</li>
-  <li>\(G\) is acyclic, and \(\lvert E\rvert = \lvert V\rvert-1\).</li>
-  <li>\(G\) is acyclic, but if any edge is added to \(E\), the resulting graph contains a cycle.</li>
-</ol>
-
-<hr />
-
-<p>I will roughly prove their equivalence here.</p>
-
-<p>\((1) \Rightarrow (2)\):
-Since \(G\) is connected, any two vertices \(u, v\) are connected by at least one simple path. If there exists more than one such path between \(u\) and \(v\), then \(G\) contains a cycle (Contradiction).</p>
-
-<p>\((2) \Rightarrow (3)\):
-Suppose we remove edge \((u,v)\). If there still exists a path between \(u\) and \(v\), then there would have more than one simple path connecting \(u\) and \(v\) initially (Contadiction). Thus \(u\) and \(v\) must not be connected after the removal of \((u,v)\) so the resulting graph is disconnected.</p>
-
-<p>\((3) \Rightarrow (4)\):
-Prove by strong induction (see (A) below).</p>
-
-<p>\((4) \Rightarrow (5)\):
-Suppose \(G\) contains cycles. Remove edges from cycles in \(G\) until we get an acyclic graph \(G'=(E',V')\). Note that \(G'\) is still connected, so \(\lvert E'\rvert \geq \lvert V'\rvert - 1\). However, \(\lvert E\rvert = \lvert V\rvert -1\), so this implies we have removed 0 edges! Thus \(G\) must have been acyclic$$.</p>
-
-<p>\((5) \Rightarrow (6)\):
-See (B) below.</p>
-
-<p>\((6) \Rightarrow (1)\):
-Suppose there is no path connecting \(u\) and \(v\) in \(G\). Then add the edge \((u,v)\) to \(G\). This new edge cannot have formed a cycle (Contradiction). Thus \(G\) must have been connected initially.</p>
-
-<hr />
-
-<p>Additionally, here are two more useful facts: (can be proven via strong induction)</p>
-
-<p>A. \(G\) is connected \(\Rightarrow \lvert E\rvert \geq \lvert V\rvert-1\).</p>
-
-<p>B. \(G\) is acyclic \(\Rightarrow  \lvert E\rvert \leq \lvert V\rvert-1\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On trees]]></summary></entry></feed>
+<p><strong>Proof by contradiction</strong>: Suppose that there is a binary tree with \(L\) leaves, with no subtrees having between \(L/3\) and \(2L/3\) leaves. If \(L\geq 2\), then the root of this tree cannot be a leaf. Take the path \(x_0 = root, x_1, \ldots , x_k\) on the tree down to a leaf, at each step picking the child subtree with the larger number of leaves. Consider the number of leaves of the subtree rooted at each \(x_i\). Clearly the number of leaves is a decreasing sequence, so along the path the number of leaves must decrement from \(x_i\) with more than \(2L/3\) leaves to \(x_{i+1}\) with less than \(L/3\) leaves. However, if \(x_i\) has less than \(L/3\) leaves, then \(x_{i+1}\) must have had less than \(2L/3\) leaves, a contradiction.</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[Three tree problems from Appendix B]]></summary></entry></feed>
