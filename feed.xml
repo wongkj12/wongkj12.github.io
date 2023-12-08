@@ -1,5 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-08-16T08:47:29+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">The Lazy Susan puzzle</title><link href="https://wongkj12.github.io/blog/2023/lazysusan/" rel="alternate" type="text/html" title="The Lazy Susan puzzle" /><published>2023-08-15T16:10:00+00:00</published><updated>2023-08-15T16:10:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/lazysusan</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/lazysusan/"><![CDATA[<p>Here is an interesting problem I encountered a long while ago:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-12-08T18:14:22+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">Some examples of the probabilistic method</title><link href="https://wongkj12.github.io/blog/2023/probabiliisticmethod/" rel="alternate" type="text/html" title="Some examples of the probabilistic method" /><published>2023-12-08T16:03:00+00:00</published><updated>2023-12-08T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/probabiliisticmethod</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/probabiliisticmethod/"><![CDATA[<p>The probabilistic method is a pretty interesting method to prove the existence of certain objects <em>nonconstructively</em>. A simple example:</p>
+
+<blockquote>
+  <p>Suppose we paint 90% of the surface of a sphere red, and the remaining 10% of it blue.
+Prove that there exists an inscribed cube with vertices on the sphere such that all of its vertices are red.</p>
+</blockquote>
+
+<p><strong>Proof:</strong></p>
+
+<p>Suppose we orient an inscribed cube randomly. Let \(X_i=1,\) if vertex \(i\) is red, and \(X_i=0\) otherwise. Then 
+since 90% of the sphere is painted red, intuitively the probability that any arbitrary vertex is red is \(\frac{9}{10}.\) Thus
+\(E(X_i)=\frac{9}{10},\) so the expected number of red vertices in a randomly inscribed cube is \(E\left(\sum_{i=1}^8 X_i\right) =\sum_{i=1}^8 E(X_i) = 8(\frac{9}{10}) = 7.2\).
+Since the expected value is \(&gt;7,\) that means that there must be <em>some</em> inscribed cube with exactly \(8\) red vertices!</p>
+
+<p>I was pretty mind-blown when I first saw the use of this method. Although we use probability, the existence is determined for certain (though without any hint as to how to construct the object). Here’s another example (from an exam I took):</p>
+
+<blockquote>
+  <p>Let \([n]=\{1,2,\ldots,n\}\) and \(T=\{(i,j,k):i,j,k\in [n]\text{ are distinct }\}\) be a set of \(m\) triples. 
+We say that a permutation \(S\) of \([n]\) is <em>consistent</em> with a triple \((i,j,k)\in T\) iff \(S\) is of the form \(\ldots i\ldots j\ldots k\ldots\) <br />
+For example, for \(n=4,\) a permutation \(3,1,2,4\) is consistent with the triple \((3,2,4).\) <br />
+Show that there exists a permutation of \([n]\) consistent with at least \(\frac{m}{6}\) triples in \(T.\)</p>
+</blockquote>
+
+<p><strong>Proof (using probabilistic method):</strong></p>
+
+<p>Consider generating a permutation \(S\) of \([n]\) uniformly at random. For each triple \(t_i\in T\), let \(X_i\) be
+the indicator random variable that denotes when \(S\) is consistent with \(t_i.\) Then \(P(X_i=1)=\frac{1}{6}\)
+(Since there are \(3!=6\) ways \(t_i\) can be permuted, only one of which can be consistent with \(S\).) <br />
+Then the expected number of consistent triples will be \(E\left(\sum_{t_i \in T}X_i\right)=\sum_{t_i\in T} E(X_i) = \frac{m}{6}.\)</p>
+
+<p>Here’s another proof without the probabilistic method:</p>
+
+<p><strong>Proof (using pigeonhole principle):</strong></p>
+
+<p>Note that each triple \(t\in T\) is consistent with exactly \(\frac{n!}{6}\) permutations of \([n].\) 
+Consider each of the \(n!\) permutations of \([n]\) as pigeonholes, and each triple \(t\) having \(\frac{n!}{6}\) pigeons
+denoting the permutations \(t\) is consistent with. Then, we have \(\frac{mn!}{6}\) pigeons to be placed into \(n!\) pigeonholes,
+so by the Pigeonhole Principle we must have some permutation of \([n]\) which is consistent with at least \(\frac{m}{6}\) triples.</p>
+
+<p>I find it rare when an object corresponds to more than one “pigeon”, and in fact there are some restrictions as to
+where each pigeon may be placed (in this case, each of the \(\frac{n!}{6}\) pigeons must belong to different pigeonholes by definition).
+Though no matter how you arrange pigeons, the Pigeonhole Principle still works.</p>]]></content><author><name></name></author><category term="notes" /><category term="math" /><summary type="html"><![CDATA[The probabilistic method is a pretty interesting method to prove the existence of certain objects nonconstructively. A simple example:]]></summary></entry><entry><title type="html">The Lazy Susan puzzle</title><link href="https://wongkj12.github.io/blog/2023/lazysusan/" rel="alternate" type="text/html" title="The Lazy Susan puzzle" /><published>2023-08-15T16:10:00+00:00</published><updated>2023-08-15T16:10:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/lazysusan</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/lazysusan/"><![CDATA[<p>Here is an interesting problem I encountered a long while ago:</p>
 
 <blockquote>
   <p>A genie arranges \(2^n\) coins in a circle on a Lazy Susan. They are randomly oriented, and you are blindfolded so that you cannot tell whether a coin is facing heads or tails. A round consists of you flipping any number of the coins in front of you. If all coins are facing the same direction (i.e all heads or all tails), then the game ends. Otherwise, the genie then rotates the Lazy Susan by a <em>random</em> angle, and the next round begins. Devise an algorithm to be able to end the game in a finite number of rounds.</p>
@@ -408,49 +449,4 @@ E_{12} &amp;\geq \frac{1}{2} \sum_{u\in V_1} deg(u) \\
 
 <p>This is one clever solution I found online, which seems obvious in hindsight:</p>
 
-<p>Consider comparing each Bernoulli trial to picking a random value \(S\) on the unit interval. If \(S \leq p_i\), we can call that a success in set \(A\). If \(S \leq p_i'\), we can call that a success in set \(A'\). If \(S \leq p_i\), then \(S \leq p_i'\). Then clearly, whenever there is a success for set \(A\), there must be a success for set \(A'\). So \(X' \geq X\), and \(P(X' \geq k) \geq P(X \geq k)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On comparing sums of Bernoulli trials]]></summary></entry><entry><title type="html">CLRS Appendix B: Three problems on trees</title><link href="https://wongkj12.github.io/blog/2023/treeproblems/" rel="alternate" type="text/html" title="CLRS Appendix B: Three problems on trees" /><published>2023-06-29T16:20:48+00:00</published><updated>2023-06-29T16:20:48+00:00</updated><id>https://wongkj12.github.io/blog/2023/treeproblems</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/treeproblems/"><![CDATA[<p>Here are three problems on trees from Appendix B.</p>
-
-<blockquote>
-  <p><strong>Exercise B.5-3</strong></p>
-
-  <p>Show that the number of degree-2 nodes in any nonempty binary tree is 1 fewer than the number of leaves. Conclude that the number of internal nodes in a full binary tree is 1 fewer than the number of leaves.</p>
-</blockquote>
-
-<p>Note that in the context of a binary tree, the “degree-2” nodes refer to nodes with exactly 2 <em>children</em>.</p>
-
-<p><strong>Proof by strong induction</strong>: Let the number of degree-2 nodes in any tree by \(D\), and the number of leaves be \(L\). Let the number of nodes in a tree be \(n\). Clearly, \(D=L-1\) when \(n=1\). Suppose it is true for all trees with \(\leq n\) nodes. Consider the root of a tree with \(n+1\) nodes. Letting subscripts \(l\) and \(r\) denote the left and right subtrees, we have that</p>
-
-\[\begin{aligned}
-D &amp;= D_l + D_r + 1 \\
-&amp;= (L_l + L_r - 2) + 1 \\
-&amp;= (L_l + L_r) - 1 \\
-&amp;= L - 1.
-\end{aligned}\]
-
-<p>In a full binary tree, all internal nodes are of degree-2.</p>
-
-<hr />
-
-<blockquote>
-  <p><strong>Exercise B.5-6</strong></p>
-
-  <p>Let us associate a “weight” \(w(x)=2^{-d}\) with each leaf \(x\) of depth \(d\) in a binary tree \(T\), and let \(L\) be the set of leaves on \(T\). Prove that \(\sum_{x\in L} w(x) \leq 1.\) (This is known as the <strong>Kraft inequality</strong>.)</p>
-</blockquote>
-
-<p><strong>Proof by strong induction</strong>: Let the number of nodes in any tree \(T\) be \(n\). Clearly when \(n=1\), \(\sum_{x\in L}w(x) = 2^0 \leq 1.\) Suppose \(\sum_{x\in L}w(x) \leq 1\) for all trees with \(\leq n\) nodes. Consider the root of a tree \(T\) with \(n+1\) nodes. Notice that the depth of all leaves in the left and right subtrees increase by 1 relative to the root. Similarly letting subscripts \(l\) and \(r\) denote the left and right subtrees, we have that</p>
-
-\[\begin{aligned}
-\sum_{x\in L}w(x) &amp;= \frac{1}{2}\sum_{x\in L_l}w(x) + \frac{1}{2}\sum_{x\in L_r}w(x) \\
-&amp;\leq \frac{1}{2}(1) + \frac{1}{2}(1) \\
-&amp;\leq 1.
-\end{aligned}\]
-
-<hr />
-
-<blockquote>
-  <p><strong>Exercise B.5-7</strong></p>
-
-  <p>Show that if \(L\geq 2\), then every binary tree with \(L\) leaves contains a subtree having between \(L/3\) and \(2L/3\) leaves, inclusive.</p>
-</blockquote>
-
-<p><strong>Proof by contradiction</strong>: Suppose that there is a binary tree with \(L\) leaves, with no subtrees having between \(L/3\) and \(2L/3\) leaves. If \(L\geq 2\), then the root of this tree cannot be a leaf. Take the path \(x_0 = root, x_1, \ldots , x_k\) on the tree down to a leaf, at each step picking the child subtree with the larger number of leaves. Consider the number of leaves of the subtree rooted at each \(x_i\). Clearly the number of leaves is a decreasing sequence, so along the path the number of leaves must decrement from \(x_i\) with more than \(2L/3\) leaves to \(x_{i+1}\) with less than \(L/3\) leaves. However, if \(x_i\) has less than \(L/3\) leaves, then \(x_{i+1}\) must have had less than \(2L/3\) leaves, a contradiction.</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[Three tree problems from Appendix B]]></summary></entry></feed>
+<p>Consider comparing each Bernoulli trial to picking a random value \(S\) on the unit interval. If \(S \leq p_i\), we can call that a success in set \(A\). If \(S \leq p_i'\), we can call that a success in set \(A'\). If \(S \leq p_i\), then \(S \leq p_i'\). Then clearly, whenever there is a success for set \(A\), there must be a success for set \(A'\). So \(X' \geq X\), and \(P(X' \geq k) \geq P(X \geq k)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On comparing sums of Bernoulli trials]]></summary></entry></feed>
