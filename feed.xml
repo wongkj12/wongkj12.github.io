@@ -1,5 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-12-08T18:14:22+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">Some examples of the probabilistic method</title><link href="https://wongkj12.github.io/blog/2023/probabiliisticmethod/" rel="alternate" type="text/html" title="Some examples of the probabilistic method" /><published>2023-12-08T16:03:00+00:00</published><updated>2023-12-08T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/probabiliisticmethod</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/probabiliisticmethod/"><![CDATA[<p>The probabilistic method is a pretty interesting method to prove the existence of certain objects <em>nonconstructively</em>. A simple example:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2024-05-25T12:46:58+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">The crossing lemma and unit distance points</title><link href="https://wongkj12.github.io/blog/2024/discretegeometry/" rel="alternate" type="text/html" title="The crossing lemma and unit distance points" /><published>2024-05-24T16:03:00+00:00</published><updated>2024-05-24T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2024/discretegeometry</id><content type="html" xml:base="https://wongkj12.github.io/blog/2024/discretegeometry/"><![CDATA[<p>I came across a proof of the “crossing lemma”: a neat result on the crossing number of graphs, and an application of the probabilistic method.</p>
+
+<p>The <strong>crossing number</strong> \(\operatorname{cr}(G)\) of a graph \(G\) is the smallest number of crossings over all possible plane drawings of \(G\). Despite its simple description, apparently not much is known about \(\operatorname{cr}(G)\). Even the crossing number of \(K_n\) remains unknown!</p>
+
+<p><strong>Crossing lemma:</strong> For any graph \(G=(V,E)\) with \(\vert E\vert\geq 4\vert V\vert,\) we have \(\operatorname{cr}(G)\geq \frac{\vert E\vert^3}{64\vert V\vert^2}.\)</p>
+
+<p><strong>Proof:</strong> First we show a simpler lower bound \(\operatorname{cr}(G)\geq \vert E\vert - 3\vert V\vert\). To see this, we use the well-known fact that if \(G\) is planar, then \(\vert E\vert \leq 3\vert V\vert -6\) (can be proven by double-counting the edges over each face and applying Euler’s formula). Then given any minimal-crossing plane drawing of \(G,\) we can remove exactly \(\operatorname{cr}(G)\) edges to obtain a planar graph. Thus \(\vert E\vert - \operatorname{cr}(G)\leq 3\vert V\vert - 6,\) so \(\operatorname{cr}(G)\geq \vert E\vert - 3\vert V\vert + 6 \geq \vert E\vert - 3\vert V\vert.\)</p>
+
+<p>Let \(m=\vert E\vert, n=\vert V\vert\). Now consider such a plane drawing of \(G\) with \(t=\operatorname{cr}(G)\) crossings. Let \(H\) be an induced subgraph of \(G\) obtained by sampling each vertex with probability \(p\). In expectation, \(H\) has \(pn\) vertices, \(p^2 m\) edges and \(p^4 t\) crossings (since each crossing is uniquely formed from exactly \(2\) edges which requires sampling \(4\) particular vertices). Now, taking expectations over the previous bound, we have \(p^4 t\geq p^2m - 3pn \implies t\geq \frac{m}{p^2} - \frac{3n}{p^3}.\) Since \(\vert E\vert \geq 4\vert V\vert,\) we can set \(p=\frac{4n}{m}\leq 1\) to obtain \(t\geq\frac{m^3}{64n^2}.\)</p>
+
+<p>It is particularly useful in deducing nontrivial bounds of the size of some combinatorial structures. For example this interesting result from discrete geometry:</p>
+
+<p><strong>(Szeméredi-Trotter)</strong> Let \(P\) be a set of \(n\) points in the plane, and let \(L\) be a set of \(m\) straight lines on the plane. The number of pairs \(p\in P\) and \(l\in L\) such that \(p\in l\) is at most \(O(m^{2/3}n^{2/3}+m+n)\).</p>
+
+<p>We are trying to maximise the number of incidences between points and lines, so we may assume that each \(l\in L\) contains at least one points \(p\in P.\) Let \(t\) be the number of such incidences. Then consider the graph \(G=(P,E)\) where an edge is between two points if they are consecutive points on some line \(l\in L\) (i.e. the straight-line graph induced by the drawing of \(P\) and \(L\)).  We can see that \(G\) has \(n\) vertices and \(t-m\) edges (consider the number of edges each line contributes wrt the incidences). Then, any crossing in \(G\) must be formed from \(2\) lines in \(L\). If \(\vert E\vert = t-m \geq 4n = 4\vert P\vert,\) then we have</p>
+
+<center>$${m\choose 2}\geq \operatorname{cr}(G) \geq \frac{(t-m)^3}{64n^2}$$.</center>
+<p>by the crossing lemma which implies \(t\in O(m^{2/3}n^{2/3}+m).\) Otherwise, \(t-m &lt; 4n\), which implies \(t\in O(m+n).\) In any case, \(t\in O(m^{2/3}n^{2/3}+m+n).\)</p>
+
+<p>With the above we can also prove strange things like this:</p>
+
+<p><strong>Claim:</strong> For any three sets \(A,B,\) and \(C\) of \(s\) real numbers, \(\vert A\cdot B + C\vert = \vert\{ab+c:a\in A,b\in B,c\in C\}\vert\in\Omega(s^{3/2}).\)</p>
+
+<p>Reference: 
+<a href="https://ti.inf.ethz.ch/ew/courses/Geo20/lecture/gca20-3.pdf">https://ti.inf.ethz.ch/ew/courses/Geo20/lecture/gca20-3.pdf</a></p>
+
+<p>CS5330 23/24 course notes</p>]]></content><author><name></name></author><category term="notes" /><category term="math" /><summary type="html"><![CDATA[I came across a proof of the “crossing lemma”: a neat result on the crossing number of graphs, and an application of the probabilistic method.]]></summary></entry><entry><title type="html">Some examples of the probabilistic method</title><link href="https://wongkj12.github.io/blog/2023/probabiliisticmethod/" rel="alternate" type="text/html" title="Some examples of the probabilistic method" /><published>2023-12-08T16:03:00+00:00</published><updated>2023-12-08T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2023/probabiliisticmethod</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/probabiliisticmethod/"><![CDATA[<p>The probabilistic method is a pretty interesting method to prove the existence of certain objects <em>nonconstructively</em>. A simple example:</p>
 
 <blockquote>
   <p>Suppose we paint 90% of the surface of a sphere red, and the remaining 10% of it blue.
@@ -431,22 +457,4 @@ E_{12} &amp;\geq \frac{1}{2} \sum_{u\in V_1} deg(u) \\
 
 <p><strong>Proof</strong>:</p>
 
-<p>Attempt to color the graph greedily (i.e. color an arbitrary vertex, then start coloring its neighbours, using new colors whenever needed, and so on). Whenever we need to use a new color \(n\) on a vertex, that vertex must neccessarily have edges connecting it to vertices colored in each one of the previous \(n-1\) colors. Everytime we use a new color, mark all of these edges. Every edge is marked at most once, and so if we end the algorithm using \(c\) colors, at least \(1+2+\ldots+c = \frac{c(c+1)}{2}\) edges must have been marked. Thus \(\frac{c(c+1)}{2} \leq E\), so \(\frac{c(c+1)}{2} \in O(V)\), and we have that \(c \in O(\sqrt{V})\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[An exercise on graph coloring from Appendix B]]></summary></entry><entry><title type="html">CLRS Appendix C: Comparing sums of Bernoulli trials</title><link href="https://wongkj12.github.io/blog/2023/comparing-bernoulli/" rel="alternate" type="text/html" title="CLRS Appendix C: Comparing sums of Bernoulli trials" /><published>2023-06-29T16:20:48+00:00</published><updated>2023-06-29T16:20:48+00:00</updated><id>https://wongkj12.github.io/blog/2023/comparing-bernoulli</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/comparing-bernoulli/"><![CDATA[<p>Here is an interesting exercise on probability distributions.</p>
-
-<blockquote>
-  <p><strong>Exercise C.4-9</strong></p>
-
-  <p>Let \(X\) be the random variable for the total number of successes in a set \(A\) of \(n\) Bernoulli trials, where the \(i\)th trial has a probability \(p_i\) of success, and let \(X'\) be the random variable for the total number of successes in a second set \(A'\) of \(n\) Bernoulli trials, where the \(i\)th trial has a probability \(p_i' \geq p_i\) of success. Prove that for \(0\leq k\leq n\),</p>
-
-  <p>\(P(X'\geq k) \geq P(X\geq k)\).</p>
-
-  <p>(<em>Hint:</em> Show how to obtain the Bernoulli trials in \(A'\) by an experiment involving the trials of \(A\), and use the result of Exercise C.3-7.)</p>
-</blockquote>
-
-<hr />
-
-<p>I found this exercise interesting as the result is intuitive, but it’s tricky to find a way to “compare” the distributions, as per the hint.</p>
-
-<p>This is one clever solution I found online, which seems obvious in hindsight:</p>
-
-<p>Consider comparing each Bernoulli trial to picking a random value \(S\) on the unit interval. If \(S \leq p_i\), we can call that a success in set \(A\). If \(S \leq p_i'\), we can call that a success in set \(A'\). If \(S \leq p_i\), then \(S \leq p_i'\). Then clearly, whenever there is a success for set \(A\), there must be a success for set \(A'\). So \(X' \geq X\), and \(P(X' \geq k) \geq P(X \geq k)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[On comparing sums of Bernoulli trials]]></summary></entry></feed>
+<p>Attempt to color the graph greedily (i.e. color an arbitrary vertex, then start coloring its neighbours, using new colors whenever needed, and so on). Whenever we need to use a new color \(n\) on a vertex, that vertex must neccessarily have edges connecting it to vertices colored in each one of the previous \(n-1\) colors. Everytime we use a new color, mark all of these edges. Every edge is marked at most once, and so if we end the algorithm using \(c\) colors, at least \(1+2+\ldots+c = \frac{c(c+1)}{2}\) edges must have been marked. Thus \(\frac{c(c+1)}{2} \leq E\), so \(\frac{c(c+1)}{2} \in O(V)\), and we have that \(c \in O(\sqrt{V})\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[An exercise on graph coloring from Appendix B]]></summary></entry></feed>
