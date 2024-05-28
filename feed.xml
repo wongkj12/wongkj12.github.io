@@ -1,5 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2024-05-25T12:46:58+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">The crossing lemma and unit distance points</title><link href="https://wongkj12.github.io/blog/2024/discretegeometry/" rel="alternate" type="text/html" title="The crossing lemma and unit distance points" /><published>2024-05-24T16:03:00+00:00</published><updated>2024-05-24T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2024/discretegeometry</id><content type="html" xml:base="https://wongkj12.github.io/blog/2024/discretegeometry/"><![CDATA[<p>I came across a proof of the “crossing lemma”: a neat result on the crossing number of graphs, and an application of the probabilistic method.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://wongkj12.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://wongkj12.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2024-05-28T21:23:26+00:00</updated><id>https://wongkj12.github.io/feed.xml</id><title type="html">wongkj12</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">Card shuffling</title><link href="https://wongkj12.github.io/blog/2024/shuffling/" rel="alternate" type="text/html" title="Card shuffling" /><published>2024-05-28T16:03:00+00:00</published><updated>2024-05-28T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2024/shuffling</id><content type="html" xml:base="https://wongkj12.github.io/blog/2024/shuffling/"><![CDATA[<p>How many shuffles does it take to randomise a deck of cards?</p>
+
+<p>It seems to be a relatively well-known fact that it takes about 7 riffle shuffles of a deck of 52 cards in order for it to become sufficiently randomised. But how do you measure if something is “random enough”? This famed analysis was covered in the paper <a href="https://www.stat.berkeley.edu/~aldous/157/Papers/bayer_diaconis.pdf">Trailing the Dovetail Shuffle to its Lair</a>.</p>
+
+<p>If a deck is perfectly shuffled, one would expect that any permutation of 52 cards is equally likely, i.e. the ordering of cards follows the uniform distribution. Thus after a few shuffles, we want to find out how “far” our deck is from following the uniform distribution. One way to measure the “distance” between probability distributions is via the <strong>total variation distance</strong> (other alternatives are possible e.g. <a href="https://en.wikipedia.org/wiki/Entropy_(information_theory)">entropy</a>).</p>
+
+<p>The <strong>total variation distance</strong> between two discrete probability distributions \(X\) and \(Y\) over some state space \(S\) is given by</p>
+
+\[\delta(X,Y)=\frac{1}{2}\sum_{s\in S}\vert\Pr[X=s]-\Pr[Y=s]\vert.\]
+
+<p>Equivalently, one can show that \(\delta(X,Y)=\max_{A\subseteq S}\vert \Pr[X\in A]-\Pr[Y\in A]\vert.\)</p>
+
+<p>The variation distance ranges from 0 (meaning \(X\) and \(Y\) are the same distribution) to 1.</p>
+
+<h4 id="a-simplified-shuffle">A simplified shuffle</h4>
+
+<p>The original analysis of variation distance of a riffle-shuffled deck relied on the <a href="https://en.wikipedia.org/wiki/Gilbert%E2%80%93Shannon%E2%80%93Reeds_model">Gilbert-Shannon-Reeds model</a> of riffle shuffle permutations, and got fairly sophisticated quick.</p>
+
+<p>However we can still analyse a much simpler, though stupid way of shuffling cards:</p>
+
+<p>At each step, choose a card independently and uniformly at random and place it on the top of the deck. This constitutes one “shuffle”. Intuitively, if we repeat this indefinitely, the deck should eventually be sufficiently randomised. (More formally, this process is a regular Markov chain with the uniform distribution as the unique stationary distribution).</p>
+
+<p>To see how well this works with a finite number of shuffles, we need to measure the variation distance between the distribution of our deck and the uniform distribution. Suppose the variation distance after some number of shuffles is less than \(\varepsilon.\) Then every permutation of the cards must have probability at most</p>
+
+\[\frac{1}{52!}+\varepsilon\]
+
+<p>In fact an even stronger bound holds - for any subset \(A\subseteq S\), the probability that the final permutation is from \(A\) is at most \(\pi(A)+\varepsilon.\) Thus if we shuffle a fresh deck of cards until variation distance is less than \(\varepsilon\), the probability that an ace remains the top card is at most \(\varepsilon\) more than if we had a completely random deck.</p>
+
+<h4 id="analysis">Analysis</h4>
+
+<p>Here we introduce the <strong>coupling lemma:</strong> (A coupling of \(X\) and \(Y\) is a joint distribution \(W=(W_1,W_2)\) over \(S\times S\) such that its two marginal distributions are \(X\) and \(Y\), i.e. the same randomness is used to generate \(X\) and \(Y\).)</p>
+
+<p><strong>Lemma:</strong> For any coupling \(W=(X,Y)\), we have \(\delta(X,Y)\leq \Pr[X\neq Y]\).</p>
+
+<p>Thus if we can find some coupling \((X_t,\pi)\) with \(\Pr[X_t\neq \pi]\leq f\), then \(\delta(X_t,\pi)\leq f.\)</p>
+
+<p>Let \(X_t\) denote the state of our deck of \(n\) cards (this follows a distribution of <em>permutations</em>, not of cards) after \(t\) shuffles, given some arbitrary starting distribution \(X_0\), and let \(Y_t\) denote the state of a deck with \(Y_0\sim\pi\) after \(t\) shuffles (where \(\pi\) is the uniform distribution). Clearly \(Y_t\sim\pi\) for all \(t\) (since it is a stationary distribution). Whenever we perform a shuffle, we couple \((X_t,Y_t)\) by selecting the same card in both decks.</p>
+
+<p>Observe that if we have already selected \(k\) new cards to shuffle to the top, then the top \(k\) cards of \(X_t\) and \(Y_t\) are the same. In other words, the top \(k\) cards of \(X_t\) will be uniformly distributed. Thus when we have selected all \(n\) cards at least once within \(t\) shuffles, then \(X_t=Y_t\) or \(X_t\sim\pi.\) This is precisely a <a href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem">coupon collector</a> process: by an application of Markov’s inequality, we then know that if we perform \(fn\ln n\) shuffles, then \(\Pr[X\neq Y]\leq f^{-1}\). In other words, after \(t=fn \ln n\) shuffles, \(\delta(X_t,\pi)\leq f^{-1}\).</p>
+
+<p>Referring to the original paper on riffle shuffles, \(7\) riffle shuffles successfully reduces the total variation distance from the uniform distribution to 0.334. In order to achieve the same result (\(f^{-1}=0.334\)) with our stupid shuffle, we need at least \(\frac{1}{0.334}\cdot(52)\ln (52)\approx 615\) shuffles! (If we bound the coupon collector process a little more carefully we can make do with \(n\ln (n/f)\) shuffles, but we still require \(\approx 262\) shuffles).</p>
+
+<p>So don’t shuffle your cards one by one.</p>
+
+<p>Reference: Probability and Computing: Randomized Algorithms and Probabilistic Analysis (Mitzenmacher &amp; Upfal)</p>]]></content><author><name></name></author><category term="notes" /><category term="math" /><summary type="html"><![CDATA[How many shuffles does it take to randomise a deck of cards?]]></summary></entry><entry><title type="html">The crossing lemma and unit distance points</title><link href="https://wongkj12.github.io/blog/2024/discretegeometry-copy/" rel="alternate" type="text/html" title="The crossing lemma and unit distance points" /><published>2024-05-24T16:03:00+00:00</published><updated>2024-05-24T16:03:00+00:00</updated><id>https://wongkj12.github.io/blog/2024/discretegeometry%20copy</id><content type="html" xml:base="https://wongkj12.github.io/blog/2024/discretegeometry-copy/"><![CDATA[<p>I came across a proof of the “crossing lemma”: a neat result on the crossing number of graphs, and an application of the probabilistic method.</p>
 
 <p>The <strong>crossing number</strong> \(\operatorname{cr}(G)\) of a graph \(G\) is the smallest number of crossings over all possible plane drawings of \(G\). Despite its simple description, apparently not much is known about \(\operatorname{cr}(G)\). Even the crossing number of \(K_n\) remains unknown!</p>
 
@@ -445,16 +489,4 @@ E_{12} &amp;\geq \frac{1}{2} \sum_{u\in V_1} deg(u) \\
 
 <p>First, we show that a longest simple path in \(G\) is a Hamiltonian path (A path which visits each vertex exactly once). Let such a path be \(P = (v_1,v_2,\ldots,v_k)\). Suppose there is a vertex \(u\) in \(G\) that is outside of \(P\). We proceed by showing that there is a vertex \(v_j\) on \(P\) that is a neighbour of \(v_k\), such that \(v_{j+1}\) is a neighbour of \(u\). Since \(P\) is a longest path, all neigbours of \(v_k\) must be on \(P\). Thus there at at least \(n/2\) neighbours \(v_i\) of \(v_k\) on \(P\), and we mark each of the \(n/2\) neighbours \(v_{i+1}\) on \(P\). Now, since \(u\) has at least \(n/2\) neighbours, by the Pigeonhole Principle, it is a neighbour of at least one of these marked vertices. Thus the vertex \(v_j\) exists, and we can construct a longer path \((v_1,v_2,\ldots,v_j,v_k,v_{k-1},\ldots,v_{j+1},u)\) (contradiction). Thus \(P\) must be a Hamiltonian path.</p>
 
-<p>Next, given \(P = (v_1,\ldots,v_n)\) we can construct a Hamiltonian cycle. Using a similar argument, we can show that there exists a pair \((v_t,v_{t+1})\) on \(P\) such that \(v_t\) is a neighbour of \(v_n\) and \(v_{t+1}\) is a neighbour of \(v_1\). Then we can rearrange vertices to form the cycle \((v_1,v_2,\ldots,v_t,v_n,v_{n-1},\ldots,v_{t+1},v_1)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[Two more graph theory problems]]></summary></entry><entry><title type="html">CLRS Appendix B: A theorem on graph coloring</title><link href="https://wongkj12.github.io/blog/2023/graphcoloringtheorem/" rel="alternate" type="text/html" title="CLRS Appendix B: A theorem on graph coloring" /><published>2023-07-02T16:01:19+00:00</published><updated>2023-07-02T16:01:19+00:00</updated><id>https://wongkj12.github.io/blog/2023/graphcoloringtheorem</id><content type="html" xml:base="https://wongkj12.github.io/blog/2023/graphcoloringtheorem/"><![CDATA[<blockquote>
-  <p><strong>Problem B-1 (d)</strong></p>
-
-  <p>Show that if a graph \(G\) has \(O(V)\) edges, then we can color \(G\) with \(O(\sqrt{V})\) colors.</p>
-</blockquote>
-
-<hr />
-
-<p>Here is a proof by trying the greedy algorithm:</p>
-
-<p><strong>Proof</strong>:</p>
-
-<p>Attempt to color the graph greedily (i.e. color an arbitrary vertex, then start coloring its neighbours, using new colors whenever needed, and so on). Whenever we need to use a new color \(n\) on a vertex, that vertex must neccessarily have edges connecting it to vertices colored in each one of the previous \(n-1\) colors. Everytime we use a new color, mark all of these edges. Every edge is marked at most once, and so if we end the algorithm using \(c\) colors, at least \(1+2+\ldots+c = \frac{c(c+1)}{2}\) edges must have been marked. Thus \(\frac{c(c+1)}{2} \leq E\), so \(\frac{c(c+1)}{2} \in O(V)\), and we have that \(c \in O(\sqrt{V})\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[An exercise on graph coloring from Appendix B]]></summary></entry></feed>
+<p>Next, given \(P = (v_1,\ldots,v_n)\) we can construct a Hamiltonian cycle. Using a similar argument, we can show that there exists a pair \((v_t,v_{t+1})\) on \(P\) such that \(v_t\) is a neighbour of \(v_n\) and \(v_{t+1}\) is a neighbour of \(v_1\). Then we can rearrange vertices to form the cycle \((v_1,v_2,\ldots,v_t,v_n,v_{n-1},\ldots,v_{t+1},v_1)\).</p>]]></content><author><name></name></author><category term="notes" /><category term="clrs" /><category term="math" /><summary type="html"><![CDATA[Two more graph theory problems]]></summary></entry></feed>
