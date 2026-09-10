@@ -6,7 +6,7 @@ subtitle:
 
 profile: 
   align: false
-  image: false
+  image: true
   image_circular: false # crops the image to make it circular
   address: false
 
