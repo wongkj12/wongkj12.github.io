@@ -6,7 +6,7 @@ subtitle:
 
 profile: 
   align: false
-  image: true
+  image: false
   image_circular: false # crops the image to make it circular
   address: false
 
@@ -17,4 +17,4 @@ social: false  # includes social icons at the bottom of the page
 ---
 I am a first-year PhD student in the [CS Theory Group](https://theory.cs.rutgers.edu/) at Rutgers University, advised by [Arpita Biswas](https://sites.google.com/view/arpitabiswas). I am broadly interested in theoretical computer science. My current focus is on problems in fair division. As an undergraduate, I majored in Computer Science and Mathematics at the National University of Singapore.
 
-Email: kaijie.wong AT rutgers DOT edu 
+Email: kaijie DOT wong AT rutgers DOT edu 
