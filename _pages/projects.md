@@ -2,14 +2,12 @@
 layout: page
 title: other
 permalink: /other/
-description: 
+description: Some older hobby projects!
 nav: true
 nav_order: 2
 display_categories: [work, fun]
 horizontal: false
 ---
-
-A collection of some older hobby projects.
 
 <!-- pages/projects.md -->
 <div class="projects">
